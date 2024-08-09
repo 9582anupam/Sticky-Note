@@ -32,11 +32,13 @@ const Note = ({
                 className={`note cursor-pointer w-80 h-80 ${
                     isHighlighted ? "highlighted" : ""
                 }`}
-                style={{ ...style, position: 'absolute' }}>
+                style={{ ...style, position: "absolute" }}>
                 <div className="flex flex-col h-full">
                     {/* Header */}
                     <div className="flex justify-between items-center border-2 border-transparent rounded-lg hover:border-white font-poppins text-cyan-950">
-                        <IconButton onClick={() => onDelete(id)} className="p-1">
+                        <IconButton
+                            onClick={() => onDelete(id)}
+                            className="p-1">
                             <img
                                 src={closeCross}
                                 alt="delete"
@@ -47,19 +49,14 @@ const Note = ({
                             {title}
                         </div>
                         <IconButton onClick={() => onEdit(id)} className="p-1">
-                            <img
-                                src={editNote}
-                                alt="edit"
-                                className="h-7"
-                            />
+                            <img src={editNote} alt="edit" className="h-7" />
                         </IconButton>
                     </div>
                     <div className="w-full h-[2px] bg-black"></div>
-                    {/* Content */}
-                    <div className="flex-1 overflow-auto p-2 rounded-lg">
-                        <div className="text-lg text-left whitespace-pre-wrap">
+                    <div className="flex-1 overflow-y-auto p-2 rounded-lg">
+                        <p className="text-lg font-semibold text-gray-800 text-left whitespace-pre-wrap break-words">
                             {description}
-                        </div>
+                        </p>
                     </div>
                 </div>
             </div>
