@@ -33,9 +33,9 @@ const Note = ({
                     isHighlighted ? "highlighted" : ""
                 }`}
                 style={{ ...style, position: "absolute" }}>
-                <div className="flex flex-col h-full">
+                <div className="flex flex-col h-full font-shadows">
                     {/* Header */}
-                    <div className="flex justify-between items-center border-2 border-transparent rounded-lg hover:border-white font-poppins text-cyan-950">
+                    <div className="flex justify-between items-center border-2 border-transparent rounded-lg hover:border-white  text-cyan-950">
                         <IconButton
                             onClick={() => onDelete(id)}
                             className="p-1">
@@ -45,7 +45,7 @@ const Note = ({
                                 className="h-7"
                             />
                         </IconButton>
-                        <div className="text-base md:text-xl lg:text-2xl font-bold p-2 text-center cursor-default truncate">
+                        <div className="text-base md:text-xl lg:text-2xl font-bold p-2 text-center cursor-default truncate ">
                             {title}
                         </div>
 
