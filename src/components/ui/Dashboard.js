@@ -3,8 +3,6 @@ import Note from "../notes/Note";
 import newNote from "../../utils/icons/new-note.svg";
 import NewNote from "../notes/NewNote";
 import Button from '@mui/material/Button';
-// import axios from 'axios';
-// import { useEffect } from "react";
 
 const colorOptions = ['#fa9fba', '#8AC256', '#97d2fb', '#fd9873', '#B89CC8'];
 
@@ -14,21 +12,6 @@ const Dashboard = () => {
     const [highlightedNoteId, setHighlightedNoteId] = useState(null);
     const [editingNote, setEditingNote] = useState(null);
     const [selectedColor, setSelectedColor] = useState(''); // State for selected color
-
-    // useEffect(() => {
-    //     // Send notes to backend whenever `notes` state changes
-    //     const sendNotesToBackend = async () => {
-    //         console.log("Sending notes to backend:", notes);
-    //         try {
-    //             const response = await axios.post('/api/notes', { notes });
-    //             console.log('Notes saved successfully:', response.data);
-    //         } catch (error) {
-    //             console.error('Error saving notes:', error);
-    //         }
-    //     };
-
-    //     sendNotesToBackend();
-    // }, [notes]); // Dependency array: run effect when `notes` changes
 
     const addNote = () => {
         setNewNoteEnable(!newNoteEnable);
@@ -82,7 +65,6 @@ const Dashboard = () => {
         <div className="bg-gray-700 h-full max-w-[100vw] overflow-x-auto relative flex flex-col items-center">
             <p className="text-gray-200 text-5xl py-4 font-bold">Sticky Notes</p>
 
-            {/* Color Filter UI */}
             <div className="mb-4 flex gap-4 items-center justify-center">
                 <p className="text-gray-200 text-xl bottom-[3px] relative">Color Filter:</p>
                 <div className="flex space-x-4">
