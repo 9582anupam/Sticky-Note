@@ -104,7 +104,7 @@ const Home = () => {
                     </Link>
                     <div className="px-2 py-1 bg-gray-100 text-[#121212] inline-block rounded-lg shadow-md">
                         <Link
-                            to="/login"
+                            to="/Signin"
                             className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-lg font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2">
                             Join Now
                         </Link>
@@ -161,7 +161,7 @@ const Home = () => {
                         </motion.div>
 
                         <Link
-                            to="/login"
+                            to="/Signin"
                             className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-2xl font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 h-10 mx-4 my-1 bg-white text-black px-4 py-6">
                                 Join Now
                         </Link>

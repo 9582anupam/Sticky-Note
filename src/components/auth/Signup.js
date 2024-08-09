@@ -125,7 +125,7 @@ const Signup = () => {
                         <Box mt={2}>
                             <Typography variant="body2">
                                 Already have an account?{" "}
-                                <Link to="/login">Sign In</Link>
+                                <Link to="/Signin">Sign In</Link>
                             </Typography>
                         </Box>
                     </StyledForm>

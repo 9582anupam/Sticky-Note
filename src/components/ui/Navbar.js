@@ -95,16 +95,16 @@ export default function Navbar() {
                                 className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-700 py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition-transform transform-gpu duration-200 ease-out">
                                 <MenuItem>
                                     <Link
-                                        to="/login"
+                                        to="/Signin"
                                         className="block px-2 py-2 text-lg text-gray-100 hover:bg-gray-600 border-b border-gray-600 last:border-b-0">
-                                        Login
+                                        Sign in
                                     </Link>
                                 </MenuItem>
                                 <MenuItem>
                                     <Link
                                         to="/signup"
                                         className="block px-2 py-2 text-lg text-gray-100 hover:bg-gray-600 border-b border-gray-600 last:border-b-0">
-                                        Signup
+                                        Sign up
                                     </Link>
                                 </MenuItem>
                             </MenuItems>

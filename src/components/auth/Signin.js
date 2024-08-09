@@ -31,7 +31,7 @@ const SubmitButton = styled(Button)(({ theme }) => ({
     margin: theme.spacing(3, 0, 2),
 }));
 
-const Login = () => {
+const Signin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -50,7 +50,7 @@ const Login = () => {
             <Container component="main" maxWidth="xs">
                 <StyledPaper elevation={3}>
                     <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
-                        Log In
+                        Sign in
                     </Typography>
 
                     <StyledForm noValidate onSubmit={handleSubmit}>
@@ -99,4 +99,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Signin;
