@@ -45,16 +45,17 @@ const Note = ({
                                 className="h-7"
                             />
                         </IconButton>
-                        <div className="text-xl font-bold p-2 text-center cursor-default truncate ">
+                        <div className="text-base md:text-xl lg:text-2xl font-bold p-2 text-center cursor-default truncate">
                             {title}
                         </div>
+
                         <IconButton onClick={() => onEdit(id)} className="p-1">
                             <img src={editNote} alt="edit" className="h-7" />
                         </IconButton>
                     </div>
                     <div className="w-full h-[2px] bg-black"></div>
                     <div className="flex-1 overflow-y-auto p-2 rounded-lg">
-                        <p className="text-lg font-semibold text-gray-800 text-left whitespace-pre-wrap break-words">
+                        <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed text-left whitespace-pre-wrap break-words">
                             {description}
                         </p>
                     </div>
