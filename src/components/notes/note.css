@@ -1,0 +1,36 @@
+.note {
+    background-color: #8AC256; 
+    border: 1px solid ; /* Slightly darker border for a paper edge effect */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1); /* Slight shadow to give a lifted appearance */
+    overflow: auto; /* Allows scrolling if the content overflows */
+    position: relative; /* Position relative for the 'sticky' effect */
+    font-family: 'Arial', sans-serif; /* Font to make it look more like a note */
+    overflow: hidden;
+    color: black;
+}
+
+/* Add this to your note.css file */
+
+@keyframes highlight {
+    0% {
+        scale: 0;
+    }
+    25% {
+        scale: 0.5;
+    }
+    50% {
+        scale: 1;
+
+    }
+    75% {
+        scale: 1.2;
+    }
+    100% {
+        scale: 1;
+    }
+}
+
+.note.highlighted {
+    animation: highlight 200ms ease-in-out;
+}

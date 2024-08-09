@@ -1,0 +1,14 @@
+html, body, #root {
+    height: 100%;
+    margin: 0;
+}
+
+.App {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Ensures that the App takes at least the full viewport height */
+}
+
+.Navbar {
+    flex-shrink: 0; /* Prevents the navbar from shrinking */
+}
