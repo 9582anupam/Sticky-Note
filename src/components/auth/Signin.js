@@ -1,3 +1,4 @@
+// Signin.js
 import React, { useState } from "react";
 import {
     Container,
@@ -9,6 +10,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
+import { auth, signInWithEmailAndPassword } from "../../services/firebase"; // Import Firebase functions
 
 // Define custom styles using styled API
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -38,11 +40,16 @@ const Signin = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const userCredentials = {
-            email,
-            password,
-        };
-        navigate('/dashboard')
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+            console.log("Success to sign in");
+            navigate('/dashboard');
+
+        } catch (error) {
+            console.error("Error signing in:", error.message);
+            alert("Error signing in: " + error.message);
+        }
     };
 
     return (
@@ -85,7 +92,7 @@ const Signin = () => {
                             fullWidth
                             variant="contained"
                             color="primary">
-                            Log In
+                            Sign In
                         </SubmitButton>
                         <Box mt={2}>
                             <Typography variant="body2">

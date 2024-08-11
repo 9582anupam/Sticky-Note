@@ -1,3 +1,4 @@
+// Signup.js
 import React, { useState } from "react";
 import {
     Container,
@@ -9,6 +10,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
+import { auth, createUserWithEmailAndPassword, updateProfile } from "../../services/firebase";
 
 // Define custom styles using styled API
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -46,14 +48,14 @@ const Signup = () => {
             return;
         }
 
-        const newUser = {
-            name,
-            email,
-            password,
-        };
-
-        navigate("/dashboard")
-
+        try {
+            await createUserWithEmailAndPassword(auth, email, password);
+            console.log("success to signup");
+            navigate("/dashboard");
+        } catch (error) {
+            console.error("Error signing up:", error.message);
+            alert("Error signing up: " + error.message);
+        }
     };
 
     return (
