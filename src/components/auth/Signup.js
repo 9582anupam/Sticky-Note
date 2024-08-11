@@ -10,7 +10,8 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, createUserWithEmailAndPassword, updateProfile } from "../../services/firebase";
+import { auth, createUserWithEmailAndPassword } from "../../services/firebase";
+import "./input.css"
 
 // Define custom styles using styled API
 const StyledPaper = styled(Paper)(({ theme }) => ({

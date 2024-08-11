@@ -1,0 +1,9 @@
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 100px #121212e8 inset !important;
+    -webkit-text-fill-color: #fff !important; 
+}
+
+input:-moz-autofill {
+    background-color: #12121200; 
+    color: #fff; 
+}
