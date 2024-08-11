@@ -29,7 +29,7 @@ const Note = ({
             defaultPosition={{ x: initialX, y: initialY }}
             onStop={handleDrag}>
             <div
-                className={`note cursor-pointer w-80 h-80 ${
+                className={`note cursor-grab w-80 h-80 ${
                     isHighlighted ? "highlighted" : ""
                 }`}
                 style={{ ...style, position: "absolute" }}>
@@ -45,7 +45,7 @@ const Note = ({
                                 className="h-7"
                             />
                         </IconButton>
-                        <div className="text-base md:text-xl lg:text-2xl font-bold p-2 text-center cursor-default truncate ">
+                        <div className="text-base md:text-xl lg:text-2xl font-bold p-2 text-center truncate ">
                             {title}
                         </div>
 
@@ -55,7 +55,7 @@ const Note = ({
                     </div>
                     <div className="w-full h-[2px] bg-black"></div>
                     <div className="flex-1 overflow-y-auto p-2 rounded-lg">
-                        <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed text-left whitespace-pre-wrap break-words">
+                        <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed text-left whitespace-pre-wrap break-words ">
                             {description}
                         </p>
                     </div>
