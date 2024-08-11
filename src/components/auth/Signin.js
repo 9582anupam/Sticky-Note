@@ -1,4 +1,3 @@
-// Signin.js
 import React, { useState } from "react";
 import {
     Container,
@@ -36,10 +35,18 @@ const SubmitButton = styled(Button)(({ theme }) => ({
 const Signin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const [generalError, setGeneralError] = useState("");
+    const [isSubmitted, setIsSubmitted] = useState(false); // New state to track submission
+    const [error, setError] = useState(""); // General error message
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsSubmitted(true); // Set to true when form is submitted
+        setEmailError(""); // Clear previous email errors
+        setGeneralError(""); // Clear previous general errors
+        setError(""); // Clear previous error message
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
@@ -48,7 +55,19 @@ const Signin = () => {
 
         } catch (error) {
             console.error("Error signing in:", error.message);
-            alert("Error signing in: " + error.message);
+            if (error.message.includes("(auth/invalid-email)")) {
+                setEmailError("Invalid Email");
+                setError("");
+                setGeneralError("");
+            } else if (error.message.includes("(auth/invalid-credential)")) {
+                setGeneralError("Incorrect email or password");
+                setError("");
+                setEmailError("");
+            } else {
+                setError("Something went wrong, contact the developer");
+                setGeneralError("");
+                setEmailError("");
+            }
         }
     };
 
@@ -73,7 +92,8 @@ const Signin = () => {
                             autoFocus
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            
+                            error={isSubmitted && !!emailError}
+                            helperText={isSubmitted && emailError}
                         />
                         <TextField
                             variant="outlined"
@@ -87,7 +107,14 @@ const Signin = () => {
                             autoComplete="current-password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            error={isSubmitted && !!generalError}
+                            helperText={isSubmitted && generalError}
                         />
+                        {error && (
+                            <Typography color="error" variant="body2" align="center">
+                                {error}
+                            </Typography>
+                        )}
                         <SubmitButton
                             type="submit"
                             fullWidth

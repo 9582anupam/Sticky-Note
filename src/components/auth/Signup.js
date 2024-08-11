@@ -1,4 +1,3 @@
-// Signup.js
 import React, { useState } from "react";
 import {
     Container,
@@ -39,23 +38,44 @@ const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
+    const [error, setError] = useState(""); // General error message
+    const [emailError, setEmailError] = useState(""); // Email-specific error
+    const [passwordError, setPasswordError] = useState(""); // Password-specific error
+    const [isSubmitted, setIsSubmitted] = useState(false); // Track submission
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsSubmitted(true); // Set to true when form is submitted
+        setError(""); // Clear previous general errors
+        setEmailError(""); // Clear previous email-specific errors
+        setPasswordError(""); // Clear previous password-specific errors
+
+        if (password.length < 6) {
+            setPasswordError("Password must be at least 6 characters long");
+            return;
+        }
 
         if (password !== confirmPassword) {
-            alert("Passwords do not match");
+            setPasswordError("Passwords do not match");
             return;
         }
 
         try {
             await createUserWithEmailAndPassword(auth, email, password);
-            console.log("success to signup");
+            console.log("Success to signup");
             navigate("/dashboard");
         } catch (error) {
             console.error("Error signing up:", error.message);
-            alert("Error signing up: " + error.message);
+            if (error.message.includes("(auth/invalid-email)")) {
+                setEmailError("Invalid Email Address");
+            } else if (error.message.includes("(auth/email-already-in-use)")) {
+                setEmailError("Email is already in use");
+            } else if (error.message.includes("(auth/weak-password)")) {
+                setPasswordError("Password must be at least 6 characters long");
+            } else {
+                setError("Something went wrong, contact the developer");
+            }
         }
     };
 
@@ -91,6 +111,8 @@ const Signup = () => {
                             autoComplete="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
+                            error={isSubmitted && !!emailError}
+                            helperText={isSubmitted && emailError}
                         />
                         <TextField
                             variant="outlined"
@@ -104,6 +126,7 @@ const Signup = () => {
                             autoComplete="new-password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
+                            error={isSubmitted && !!passwordError}
                         />
                         <TextField
                             variant="outlined"
@@ -117,7 +140,14 @@ const Signup = () => {
                             autoComplete="new-password"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
+                            error={isSubmitted && !!passwordError}
+                            helperText={isSubmitted && passwordError}
                         />
+                        {error && (
+                            <Typography color="error" variant="body2" align="center">
+                                {error}
+                            </Typography>
+                        )}
                         <SubmitButton
                             type="submit"
                             fullWidth
