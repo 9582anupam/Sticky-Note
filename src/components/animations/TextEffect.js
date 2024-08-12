@@ -7,8 +7,9 @@ const defaultContainerVariants = {
     visible: {
         opacity: 1,
         transition: {
-            staggerChildren: 0.08,
-            delayChildren: 0.5, // Start delay for children
+            staggerChildren: 0.1, // Adjust for smoother staggering
+            delayChildren: 0.3, // Start delay for children
+            ease: "linear"
         },
     },
 };
@@ -18,8 +19,9 @@ const defaultItemVariants = {
     visible: {
         opacity: 1,
         transition: {
-            duration: 0.5, // Adjust duration if needed
-            delay: 1.2, // Start delay for individual items
+            duration: 0.5, // Adjust duration for smoother animation
+            ease: "linear", // Smoother easing
+            delay: 0.3, // Start delay for individual items
         },
     },
 };
@@ -29,35 +31,35 @@ const presetVariants = {
         container: defaultContainerVariants,
         item: {
             hidden: { opacity: 0, filter: "blur(12px)" },
-            visible: { opacity: 1, filter: "blur(0px)" },
+            visible: { opacity: 1, filter: "blur(0px)", transition: { duration: 0.6, ease: "easeOut" } },
         },
     },
     shake: {
         container: defaultContainerVariants,
         item: {
             hidden: { x: 0 },
-            visible: { x: [-5, 5, -5, 5, 0], transition: { duration: 0.5 } },
+            visible: { x: [-5, 5, -5, 5, 0], transition: { duration: 0.6, ease: "easeOut" } },
         },
     },
     scale: {
         container: defaultContainerVariants,
         item: {
-            hidden: { opacity: 0, scale: 0 },
-            visible: { opacity: 1, scale: 1 },
+            hidden: { opacity: 0, scale: 0.8 }, // Slightly smaller scale for smoother scaling
+            visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "easeOut" } },
         },
     },
     fade: {
         container: defaultContainerVariants,
         item: {
             hidden: { opacity: 0 },
-            visible: { opacity: 1 },
+            visible: { opacity: 1, transition: { duration: 0.5, ease: "easeOut" } },
         },
     },
     slide: {
         container: defaultContainerVariants,
         item: {
             hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
         },
     },
 };

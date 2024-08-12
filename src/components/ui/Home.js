@@ -112,7 +112,7 @@ const CombinedComponent = () => {
                         className="container mx-auto flex items-center justify-between"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
-                        transition={{ duration: 1 }}>
+                        transition={{ duration: 2.5 }}>
                         <Link className="flex items-center gap-2" to="/">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -135,9 +135,9 @@ const CombinedComponent = () => {
                         </Link>
                         <div className=" bg-gray-100 text-[#121212] inline-block rounded-lg shadow-md">
                             <motion.div
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.6 }}>
+                                initial={{ opacity: 0, }}
+                                animate={{ opacity: 1, }}
+                                transition={{ duration: 2 }}>
                                 <Link
                                     to="/Signin"
                                     className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-lg font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-3 py-2">
