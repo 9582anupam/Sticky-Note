@@ -343,7 +343,7 @@ const CombinedComponent = () => {
 
     return (
         <div
-            className={`bg-[#121212] text-gray-300 h-screen w-full flex flex-col justify-center items-center text-4xl sm:text-5xl md:text-6xl lg:text-7xl ${
+            className={`bg-[#121212] text-gray-300 h-screen w-full flex flex-col justify-center items-center text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-medium ${
                 fadeOut ? "fade-out" : ""
             }`}>
             <TextEffect per="char" preset="fade">
