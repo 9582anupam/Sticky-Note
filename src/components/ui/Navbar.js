@@ -6,16 +6,20 @@ import {
 } from "@headlessui/react";
 import stickyNoteIcon from "../../utils/icons/sticky-note.svg";
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import userProfile from "../../utils/icons/user-profile.svg";
+import { auth } from "../../services/firebase";
 
 export default function Navbar() {
-    // const [loggedIn, setLoggedIn] = useState(localStorage.getItem('loggedIn')==='true');
-
-    // useEffect(() => {
-    //     setLoggedIn(localStorage.getItem("loggedIn")==='true');
-    // }, [setLoggedIn])
     const loggedIn = 'true';
+
+    const handleLogout = async () => {
+        try {
+            await auth.signOut();
+            console.log("User logged out");
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
+    };
 
     return (
         <nav className="bg-gray-800 max-h-[64px]">
@@ -81,7 +85,7 @@ export default function Navbar() {
                                         Settings
                                     </Link>
                                 </MenuItem>
-                                <MenuItem onClick={() => localStorage.setItem('loggedIn', 'false')}>
+                                <MenuItem onClick={handleLogout}>
                                     <Link
                                         to="/"
                                         className="block px-4 py-2 text-lg text-gray-100 hover:bg-gray-600 border-b border-gray-600 last:border-b-0">
