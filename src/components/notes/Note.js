@@ -27,13 +27,15 @@ const Note = ({
     return (
         <Draggable
             defaultPosition={{ x: initialX, y: initialY }}
-            onStop={handleDrag}>
+            onStop={handleDrag}
+            handle=".content-handle" // Only drag the card when the content area is dragged
+        >
             <div
-                className={`note cursor-grab w-80 h-80 rounded ${
+                className={`note w-80 h-80 rounded select-none ${
                     isHighlighted ? "highlighted" : ""
                 }`}
                 style={{ ...style, position: "absolute" }}>
-                <div className="flex flex-col h-full font-shadows">
+                <div className="flex flex-col h-full font-shadows" onDoubleClick={() => onEdit(id)}>
                     {/* Header */}
                     <div className="flex justify-between items-center border-2 border-transparent rounded-t hover:border-white  text-cyan-950">
                         <IconButton
@@ -54,7 +56,7 @@ const Note = ({
                         </IconButton>
                     </div>
                     <div className="w-full h-[2px] bg-black"></div>
-                    <div className="flex-1 overflow-y-auto p-2 border-2 border-transparent rounded-b hover:border-white">
+                    <div className="flex-1 overflow-y-auto p-2 border-2 border-transparent rounded-b hover:border-white cursor-grab content-handle">
                         <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed text-left whitespace-pre-wrap break-words ">
                             {description}
                         </p>
