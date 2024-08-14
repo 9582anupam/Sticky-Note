@@ -2,7 +2,7 @@
 import { initializeApp } from "firebase/app";
 // import { getAnalytics } from "firebase/analytics";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { getFirestore } from 'firebase/firestore';
+import { getDatabase  } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -15,14 +15,15 @@ const firebaseConfig = {
   storageBucket: "sticky-note-9582.appspot.com",
   messagingSenderId: "604125189156",
   appId: "1:604125189156:web:81580159c22793ee7b34b1",
-  measurementId: "G-C8L5GFFV4S"
+  measurementId: "G-C8L5GFFV4S",
+  databaseURL: "https://sticky-note-9582-default-rtdb.asia-southeast1.firebasedatabase.app/" 
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app);
 const auth = getAuth(app);
-const db = getFirestore(app);
+const db = getDatabase(app);
 
 
 export { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, db };

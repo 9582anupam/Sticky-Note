@@ -3,6 +3,8 @@ import Note from "../notes/Note";
 import newNote from "../../utils/icons/new-note.svg";
 import NewNote from "../notes/NewNote";
 import Button from '@mui/material/Button';
+import { putData } from "../../services/dataService"
+
 
 const colorOptions = ['#fa9fba', '#8AC256', '#97d2fb', '#fd9873', '#B89CC8'];
 
@@ -23,10 +25,14 @@ const Dashboard = () => {
     const handleCreateOrUpdateNote = (note) => {
         if (note) {
             if (editingNote) {
+                console.log(note.id);
                 setNotes(notes.map(n => n.id === editingNote.id ? { ...note, x: editingNote.x, y: editingNote.y } : n));
+                // putData({ ...note, x: editingNote.x, y: editingNote.y });
                 setEditingNote(null);
             } else {
+                console.log(note.id);
                 setNotes([{ ...note, x: 50, y: 0 }, ...notes]);
+                putData({ ...note, x: 50, y: 0 });
                 setHighlightedNoteId(note.id);
             }
         }
@@ -34,6 +40,7 @@ const Dashboard = () => {
     };
 
     const handleEditNote = (id) => {
+        console.log('edit id: ',id);
         const noteToEdit = notes.find(n => n.id === id);
         setEditingNote(noteToEdit);
         setNewNoteEnable(true); 
