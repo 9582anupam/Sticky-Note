@@ -52,6 +52,7 @@ const Dashboard = () => {
 
     const handleDragNote = (id, x, y) => {
         setNotes(notes.map(note => note.id === id ? { ...note, x, y } : note));
+        putData({...notes.filter(n => n.id === id)[0], x, y });
     };
 
     const handleColorFilter = (color) => {
