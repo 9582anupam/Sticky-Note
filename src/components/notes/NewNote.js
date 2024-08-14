@@ -46,7 +46,7 @@ const NewNote = ({
 
     useEffect(() => {
         setSelectedColor(initialColor || defaultColor);
-    }, [initialColor]);
+    }, [initialColor, defaultColor]);
 
     const handleColorSelect = (color) => {
         setSelectedColor(color);
