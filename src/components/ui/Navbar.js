@@ -7,14 +7,14 @@ import { auth } from "../../services/firebase";
 export default function Navbar() {
     const loggedIn = "true";
 
-    const handleLogout = async () => {
-        try {
-            await auth.signOut();
-            console.log("User logged out");
-        } catch (error) {
-            console.error("Error logging out:", error);
-        }
-    };
+        const handleLogout = async () => {
+            try {
+                await auth.signOut();
+                console.log("User logged out");
+            } catch (error) {
+                console.error("Error logging out:", error);
+            }
+        };
 
     return (
         <nav className="bg-gray-800 max-h-[64px]">
