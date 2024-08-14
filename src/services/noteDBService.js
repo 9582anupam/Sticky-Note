@@ -1,7 +1,6 @@
 import { ref, set, remove, get } from "firebase/database";
 import { auth, db } from "./firebase";
 
-
 export const putData = async (data) => {
     const user = auth.currentUser;
 
@@ -31,17 +30,17 @@ export const fetchAll = async () => {
         try {
             const userRef = ref(db, `users/${user.uid}`);
             const snapshot = await get(userRef);
-            
+
             if (snapshot.exists()) {
                 const data = snapshot.val();
-                console.log(data)
-                return data; 
+                console.log(data);
+                return data;
             } else {
                 console.log("No data available for this user.");
                 return {};
             }
         } catch (error) {
-            console.error('Error fetching data:', error);
+            console.error("Error fetching data:", error);
             return {};
         }
     } else {

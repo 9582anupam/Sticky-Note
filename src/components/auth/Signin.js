@@ -23,7 +23,7 @@ const StyledPaper = styled(Paper)(({ theme }) => ({
     textAlign: "center",
 }));
 
-const StyledForm = styled('form')(({ theme }) => ({
+const StyledForm = styled("form")(({ theme }) => ({
     width: "100%",
     marginTop: theme.spacing(1),
 }));
@@ -51,8 +51,7 @@ const Signin = () => {
         try {
             await signInWithEmailAndPassword(auth, email, password);
             console.log("Success to sign in");
-            navigate('/dashboard');
-
+            navigate("/dashboard");
         } catch (error) {
             console.error("Error signing in:", error.message);
             if (error.message.includes("(auth/invalid-email)")) {
@@ -75,7 +74,10 @@ const Signin = () => {
         <div className="bg-[#121212] h-full">
             <Container component="main" maxWidth="xs">
                 <StyledPaper elevation={3}>
-                    <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
+                    <Typography
+                        variant="h5"
+                        gutterBottom
+                        sx={{ fontWeight: "bold" }}>
                         Sign in
                     </Typography>
 
@@ -111,7 +113,10 @@ const Signin = () => {
                             helperText={isSubmitted && generalError}
                         />
                         {error && (
-                            <Typography color="error" variant="body2" align="center">
+                            <Typography
+                                color="error"
+                                variant="body2"
+                                align="center">
                                 {error}
                             </Typography>
                         )}
@@ -124,7 +129,8 @@ const Signin = () => {
                         </SubmitButton>
                         <Box mt={2}>
                             <Typography variant="body2">
-                                Don't have an account? <Link to="/signup">Sign Up</Link>
+                                Don't have an account?{" "}
+                                <Link to="/signup">Sign Up</Link>
                             </Typography>
                         </Box>
                     </StyledForm>

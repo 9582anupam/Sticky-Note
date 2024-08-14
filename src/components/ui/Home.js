@@ -106,8 +106,12 @@ const CombinedComponent = () => {
     });
 
     const headerVariants = {
-        initial: { opacity: 0, backgroundColor: 'black' },
-        animate: { opacity: 1, backgroundColor: '#121212', transition: { duration: 5 } }
+        initial: { opacity: 0, backgroundColor: "black" },
+        animate: {
+            opacity: 1,
+            backgroundColor: "#121212",
+            transition: { duration: 5 },
+        },
     };
 
     if (showHome) {
@@ -119,8 +123,7 @@ const CombinedComponent = () => {
                         initial="initial"
                         animate="animate"
                         variants={headerVariants}
-                        transition={{ duration: 2 }}
-                    >
+                        transition={{ duration: 2 }}>
                         <Link className="flex items-center gap-2" to="/">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -145,8 +148,7 @@ const CombinedComponent = () => {
                             <motion.div
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
-                                transition={{ duration: 2 }}
-                            >
+                                transition={{ duration: 2 }}>
                                 <Link
                                     to="/Signin"
                                     className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-lg font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-3 py-2">
@@ -169,29 +171,49 @@ const CombinedComponent = () => {
                             </h1>
                             <motion.div
                                 initial={{ opacity: 0, y: 50 }}
-                                animate={headerInView ? { opacity: 1, y: 0 } : {}}
+                                animate={
+                                    headerInView ? { opacity: 1, y: 0 } : {}
+                                }
                                 transition={{ duration: 2 }}>
                                 <div className="inline-block text-left">
                                     <motion.p
                                         initial={{ opacity: 0, y: 20 }}
-                                        animate={headerInView ? { opacity: 1, y: 0 } : {}}
+                                        animate={
+                                            headerInView
+                                                ? { opacity: 1, y: 0 }
+                                                : {}
+                                        }
                                         transition={{ duration: 1.5, delay: 1 }}
                                         className="text-muted-foreground text-lg md:text-xl mb-4">
-                                        Easily create, move, and manage your sticky notes on any device.
+                                        Easily create, move, and manage your
+                                        sticky notes on any device.
                                     </motion.p>
                                     <motion.p
                                         initial={{ opacity: 0, y: 20 }}
-                                        animate={headerInView ? { opacity: 1, y: 0 } : {}}
-                                        transition={{ duration: 1.5, delay: 1.5 }}
+                                        animate={
+                                            headerInView
+                                                ? { opacity: 1, y: 0 }
+                                                : {}
+                                        }
+                                        transition={{
+                                            duration: 1.5,
+                                            delay: 1.5,
+                                        }}
                                         className="text-muted-foreground text-lg md:text-xl mb-4">
-                                        Stay organized and on top of your tasks with our intuitive interface.
+                                        Stay organized and on top of your tasks
+                                        with our intuitive interface.
                                     </motion.p>
                                     <motion.p
                                         initial={{ opacity: 0, y: 20 }}
-                                        animate={headerInView ? { opacity: 1, y: 0 } : {}}
+                                        animate={
+                                            headerInView
+                                                ? { opacity: 1, y: 0 }
+                                                : {}
+                                        }
                                         transition={{ duration: 1.5, delay: 2 }}
                                         className="text-muted-foreground text-lg md:text-xl mb-8">
-                                        Access your sticky notes from any device, anytime, anywhere.
+                                        Access your sticky notes from any
+                                        device, anytime, anywhere.
                                     </motion.p>
                                 </div>
                             </motion.div>
@@ -228,7 +250,8 @@ const CombinedComponent = () => {
                                             left: note.position.x,
                                             color: note.textStyle.color,
                                             fontSize: note.textStyle.fontSize,
-                                            fontWeight: note.textStyle.fontWeight,
+                                            fontWeight:
+                                                note.textStyle.fontWeight,
                                         }}
                                         drag
                                         dragConstraints={containerRef}
@@ -239,8 +262,10 @@ const CombinedComponent = () => {
                                         <p
                                             style={{
                                                 color: note.textStyle.color,
-                                                fontSize: note.textStyle.fontSize,
-                                                fontWeight: note.textStyle.fontWeight,
+                                                fontSize:
+                                                    note.textStyle.fontSize,
+                                                fontWeight:
+                                                    note.textStyle.fontWeight,
                                             }}>
                                             {note.text}
                                         </p>
@@ -266,7 +291,8 @@ const CombinedComponent = () => {
                                     {column.newsletter ? (
                                         <>
                                             <p className="text-muted-foreground mb-4 text-lg">
-                                                Subscribe to our newsletter for updates and exclusive offers.
+                                                Subscribe to our newsletter for
+                                                updates and exclusive offers.
                                             </p>
                                             <form className="flex gap-2">
                                                 <input
@@ -283,17 +309,35 @@ const CombinedComponent = () => {
                                         </>
                                     ) : (
                                         <ul className="space-y-2 text-lg">
-                                            {column.items.map((item, itemIndex) => (
-                                                <motion.li
-                                                    key={itemIndex}
-                                                    initial={{ opacity: 0, y: 20 }}
-                                                    animate={footerInView ? { opacity: 1, y: 0 } : {}}
-                                                    transition={{ duration: 0.8, delay: itemIndex * 0.2 }}>
-                                                    <Link className="hover:underline" to={item.href}>
-                                                        {item.text}
-                                                    </Link>
-                                                </motion.li>
-                                            ))}
+                                            {column.items.map(
+                                                (item, itemIndex) => (
+                                                    <motion.li
+                                                        key={itemIndex}
+                                                        initial={{
+                                                            opacity: 0,
+                                                            y: 20,
+                                                        }}
+                                                        animate={
+                                                            footerInView
+                                                                ? {
+                                                                      opacity: 1,
+                                                                      y: 0,
+                                                                  }
+                                                                : {}
+                                                        }
+                                                        transition={{
+                                                            duration: 0.8,
+                                                            delay:
+                                                                itemIndex * 0.2,
+                                                        }}>
+                                                        <Link
+                                                            className="hover:underline"
+                                                            to={item.href}>
+                                                            {item.text}
+                                                        </Link>
+                                                    </motion.li>
+                                                )
+                                            )}
                                         </ul>
                                     )}
                                 </div>

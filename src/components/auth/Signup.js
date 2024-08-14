@@ -10,7 +10,7 @@ import {
 import { styled } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, createUserWithEmailAndPassword } from "../../services/firebase";
-import "./input.css"
+import "./input.css";
 
 // Define custom styles using styled API
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -83,7 +83,10 @@ const Signup = () => {
         <div className="bg-[#121212] h-full">
             <Container component="main" maxWidth="xs">
                 <StyledPaper elevation={3}>
-                    <Typography variant="h5" gutterBottom sx={{ fontWeight: 'bold' }}>
+                    <Typography
+                        variant="h5"
+                        gutterBottom
+                        sx={{ fontWeight: "bold" }}>
                         Sign Up
                     </Typography>
                     <StyledForm noValidate onSubmit={handleSubmit}>
@@ -144,7 +147,10 @@ const Signup = () => {
                             helperText={isSubmitted && passwordError}
                         />
                         {error && (
-                            <Typography color="error" variant="body2" align="center">
+                            <Typography
+                                color="error"
+                                variant="body2"
+                                align="center">
                                 {error}
                             </Typography>
                         )}

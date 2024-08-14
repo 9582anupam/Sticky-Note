@@ -6,7 +6,6 @@ import Signup from "./components/auth/Signup";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import Home from "./components/ui/Home";
-import Testing from "./components/ui/Testing";
 
 const darkTheme = createTheme({
     palette: {
@@ -23,16 +22,14 @@ function App() {
                         <Route path="/" element={<Home />} />
                         <Route path="/Signin" element={<Signin />} />
                         <Route path="/signup" element={<Signup />} />
-                        <Route path="/testing" element={<Testing />} />
-                        
-                        <Route 
-                            path="/dashboard" 
+                        <Route
+                            path="/dashboard"
                             element={
                                 <>
                                     <Navbar />
                                     <Dashboard />
                                 </>
-                            } 
+                            }
                         />
                     </Routes>
                 </div>

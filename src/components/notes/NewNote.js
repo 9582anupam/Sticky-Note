@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-    Box,
-    Button,
-    TextField,
-    Typography,
-    useTheme
-} from "@mui/material";
+import { Box, Button, TextField, Typography, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const colors = [
     { name: "Pink", hex: "#fa9fba" },
@@ -17,42 +11,42 @@ const colors = [
     { name: "Purple", hex: "#B89CC8" },
 ];
 
-const ColorCircle = styled("div")(({ theme, color, isDarkMode, isSelected }) => ({
-    width: 24,
-    height: 24,
-    borderRadius: "50%",
-    backgroundColor: color,
-    cursor: "pointer",
-    margin: theme.spacing(0.5),
-    border: `2px solid ${isSelected ? 'white' : color}`,
-    transition: "transform 0.1s, border 0.3s",
-    transform: isSelected ? 'scale(1.2)' : 'scale(1)',
-    "&:hover": {
-        border: `2px solid ${isDarkMode ? 'white' : 'black'}`,
-        transform: 'scale(1.2)',
-    },
-}));
+const ColorCircle = styled("div")(
+    ({ theme, color, isDarkMode, isSelected }) => ({
+        width: 24,
+        height: 24,
+        borderRadius: "50%",
+        backgroundColor: color,
+        cursor: "pointer",
+        margin: theme.spacing(0.5),
+        border: `2px solid ${isSelected ? "white" : color}`,
+        transition: "transform 0.1s, border 0.3s",
+        transform: isSelected ? "scale(1.2)" : "scale(1)",
+        "&:hover": {
+            border: `2px solid ${isDarkMode ? "white" : "black"}`,
+            transform: "scale(1.2)",
+        },
+    })
+);
 
-const NewNote = ({ onCreate, initialTitle = '', initialContent = '', initialColor = '', initialId = '' }) => {
-    const [group, setGroup] = useState(initialColor); // Initialize with initialColor
-    const [selectedColor, setSelectedColor] = useState(initialColor);
+const NewNote = ({
+    onCreate,
+    initialTitle = "",
+    initialContent = "",
+    initialColor = "",
+    initialId = "",
+}) => {
+    const defaultColor = colors[0].hex; // Default color
+    const [selectedColor, setSelectedColor] = useState(initialColor || defaultColor);
     const [title, setTitle] = useState(initialTitle);
     const [content, setContent] = useState(initialContent);
 
     const theme = useTheme();
-    const isDarkMode = theme.palette.mode === 'dark';
+    const isDarkMode = theme.palette.mode === "dark";
 
-    // Synchronize `selectedColor` and `group` if `initialColor` changes
     useEffect(() => {
-        setGroup(initialColor);
-        setSelectedColor(initialColor);
+        setSelectedColor(initialColor || defaultColor);
     }, [initialColor]);
-
-    const handleChange = (event) => {
-        const newValue = event.target.value;
-        setGroup(newValue);
-        console.log(newValue); // Log the selected value directly
-    };
 
     const handleColorSelect = (color) => {
         setSelectedColor(color);
@@ -65,13 +59,12 @@ const NewNote = ({ onCreate, initialTitle = '', initialContent = '', initialColo
             id: initialId || uuidv4(), // Use existing ID if editing, else generate new UUID
             title,
             content,
-            color: selectedColor || colors[0].hex,
+            color: selectedColor || defaultColor, // Default color if none is selected
         });
 
         setTitle("");
         setContent("");
-        setSelectedColor("");
-        setGroup(""); // Reset state if needed
+        setSelectedColor(defaultColor); // Reset to default color after creation
     };
 
     return (
@@ -79,14 +72,15 @@ const NewNote = ({ onCreate, initialTitle = '', initialContent = '', initialColo
             sx={{
                 width: 300,
                 p: 2,
-                border: `1px solid ${isDarkMode ? '#333' : '#ccc'}`,
+                border: `1px solid ${isDarkMode ? "#333" : "#ccc"}`,
                 borderRadius: 1,
-                bgcolor: (isDarkMode ? '#333' : 'white'),
+                bgcolor: isDarkMode ? "#333" : "white",
                 borderTopRightRadius: "15px",
-                color: isDarkMode ? 'white' : 'black',
-            }}>
+                color: isDarkMode ? "white" : "black",
+            }}
+        >
             <Typography variant="h6" gutterBottom>
-                {initialTitle ? 'Edit Note' : 'New Note'}
+                {initialTitle ? "Edit Note" : "New Note"}
             </Typography>
             <Box
                 sx={{
@@ -94,7 +88,8 @@ const NewNote = ({ onCreate, initialTitle = '', initialContent = '', initialColo
                     justifyContent: "space-between",
                     mb: 2,
                 }}
-                size="small">
+                size="small"
+            >
                 {colors.map((color) => (
                     <ColorCircle
                         key={color.hex}
@@ -111,7 +106,11 @@ const NewNote = ({ onCreate, initialTitle = '', initialContent = '', initialColo
                 variant="outlined"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                sx={{ mb: 2, bgcolor: isDarkMode ? '#444' : 'white', color: isDarkMode ? 'white' : 'black' }}
+                sx={{
+                    mb: 2,
+                    bgcolor: isDarkMode ? "#444" : "white",
+                    color: isDarkMode ? "white" : "black",
+                }}
             />
             <TextField
                 fullWidth
@@ -121,12 +120,22 @@ const NewNote = ({ onCreate, initialTitle = '', initialContent = '', initialColo
                 variant="outlined"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                sx={{ mb: 2, bgcolor: isDarkMode ? '#444' : 'white', color: isDarkMode ? 'white' : 'black' }}
+                sx={{
+                    mb: 2,
+                    bgcolor: isDarkMode ? "#444" : "white",
+                    color: isDarkMode ? "white" : "black",
+                }}
             />
             <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-                <Button variant="outlined" onClick={() => onCreate(null)}>Cancel</Button>
-                <Button variant="contained" color="primary" onClick={handleCreateNote}>
-                    {initialTitle ? 'Update' : 'Create'}
+                <Button variant="outlined" onClick={() => onCreate(null)}>
+                    Cancel
+                </Button>
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={handleCreateNote}
+                >
+                    {initialTitle ? "Update" : "Create"}
                 </Button>
             </Box>
         </Box>

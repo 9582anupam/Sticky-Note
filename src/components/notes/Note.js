@@ -35,7 +35,9 @@ const Note = ({
                     isHighlighted ? "highlighted" : ""
                 }`}
                 style={{ ...style, position: "absolute" }}>
-                <div className="flex flex-col h-full font-shadows" onDoubleClick={() => onEdit(id)}>
+                <div
+                    className="flex flex-col h-full font-shadows"
+                    onDoubleClick={() => onEdit(id)}>
                     {/* Header */}
                     <div className="flex justify-between items-center border-2 border-transparent rounded-t hover:border-white  text-cyan-950">
                         <IconButton
