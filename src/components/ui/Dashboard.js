@@ -3,7 +3,8 @@ import Note from "../notes/Note";
 import newNote from "../../utils/icons/new-note.svg";
 import NewNote from "../notes/NewNote";
 import Button from '@mui/material/Button';
-import { putData, deleteData } from "../../services/dataService"
+import { putData, deleteData, fetchAll } from "../../services/noteDBService";
+import { useEffect } from "react";
 
 
 const colorOptions = ['#fa9fba', '#8AC256', '#97d2fb', '#fd9873', '#B89CC8'];
@@ -13,7 +14,26 @@ const Dashboard = () => {
     const [newNoteEnable, setNewNoteEnable] = useState(false);
     const [highlightedNoteId, setHighlightedNoteId] = useState(null);
     const [editingNote, setEditingNote] = useState(null);
-    const [selectedColor, setSelectedColor] = useState(''); // State for selected color
+    const [selectedColor, setSelectedColor] = useState('');
+
+    useEffect(() => {
+        const getNotes = async () => {
+            const data = await fetchAll();
+            console.log("data", data);
+            
+            const notesArray = Object.keys(data).map(key => ({
+                ...data[key],
+                id: key,
+                x: parseInt(data[key].x, 10),
+                y: parseInt(data[key].y, 10),
+            }));
+            
+            setNotes(notesArray);
+        };
+
+        getNotes();
+        setHighlightedNoteId(null);
+    }, []);
 
     const addNote = () => {
         setNewNoteEnable(!newNoteEnable);
@@ -25,12 +45,10 @@ const Dashboard = () => {
     const handleCreateOrUpdateNote = (note) => {
         if (note) {
             if (editingNote) {
-                console.log(note.id);
                 setNotes(notes.map(n => n.id === editingNote.id ? { ...note, x: editingNote.x, y: editingNote.y } : n));
                 putData({ ...note, x: editingNote.x, y: editingNote.y });
                 setEditingNote(null);
             } else {
-                console.log(note.id);
                 setNotes([{ ...note, x: 50, y: 0 }, ...notes]);
                 putData({ ...note, x: 50, y: 0 });
                 setHighlightedNoteId(note.id);
