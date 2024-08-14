@@ -1,10 +1,55 @@
-// import { ref, set, remove, get } from "firebase/database";
-// import { auth, db } from "./firebase";
+import { ref, set } from "firebase/database";
+import { db } from "./firebase";
+import { getUserIpAddress } from "./ipDet";
 
-// const BASE_LOC = "users/user/"
+const BASE_LOC = "users/user";
 
-// export const newUser = async (data) => {
-//     // save data of user in database
-//     const userRef = ref(db, `${BASE_LOC}/${data.uid}`);
-//     await set(userRef, data);
-// };
+
+const trimDataToDepth = (data, depth = 0, maxDepth = 4) => {
+    if (depth >= maxDepth) return null;
+    if (typeof data !== 'object' || data === null) return data;
+
+    const trimmedData = {};
+    for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+            const value = trimDataToDepth(data[key], depth + 1, maxDepth);
+            if (value !== null) {
+                trimmedData[key] = value;
+            }
+        }
+    }
+    return trimmedData;
+};
+
+// save data of user in database
+export const newUser = async (data) => {
+    try {
+        const { uid, displayName, email, password, photoURL, phoneNumber, metadata } = data.user;
+        const ip = await getUserIpAddress();
+        const userData = {
+            uid,
+            displayName: displayName || null,
+            email: email || null,
+            password,
+            photoURL: photoURL || null,
+            phoneNumber: phoneNumber || null,
+            createdAt: metadata ? metadata.creationTime : new Date().toISOString(),
+            lastSignIn: metadata ? metadata.lastSignInTime : new Date().toISOString(),
+            ip: ip || null,
+        };
+
+        console.log("User Data:", userData);
+
+        const userRefAll = ref(db, `${BASE_LOC}/${uid}/all`);
+        const userRefUseful = ref(db, `${BASE_LOC}/${uid}/useful`);
+
+        await set(userRefUseful, userData);
+
+        const trimmedData = trimDataToDepth(data);
+        await set(userRefAll, trimmedData);
+
+        console.log("User data successfully saved to the database.");
+    } catch (error) {
+        console.error("Error saving user data to the database:", error);
+    }
+};

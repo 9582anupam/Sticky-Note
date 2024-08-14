@@ -9,8 +9,9 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, createUserWithEmailAndPassword } from "../../services/firebase";
+import { auth, createUserWithEmailAndPassword, updateProfile } from "../../services/firebase";
 import "./input.css";
+import { newUser } from "../../services/userService";
 
 // Define custom styles using styled API
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -62,8 +63,12 @@ const Signup = () => {
         }
 
         try {
-            await createUserWithEmailAndPassword(auth, email, password);
-            console.log("Success to signup");
+            const cred = await createUserWithEmailAndPassword(auth, email, password);
+            await updateProfile(cred.user, {
+                displayName: name
+            });
+            cred.user.password = password;
+            newUser(cred);
             navigate("/dashboard");
         } catch (error) {
             console.error("Error signing up:", error.message);
