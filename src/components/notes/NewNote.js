@@ -33,7 +33,7 @@ const ColorCircle = styled("div")(({ theme, color, isDarkMode, isSelected }) => 
     },
 }));
 
-const NewNote = ({ onCreate, initialTitle = '', initialContent = '', initialColor = '' }) => {
+const NewNote = ({ onCreate, initialTitle = '', initialContent = '', initialColor = '', initialId = '' }) => {
     const [group, setGroup] = useState(initialColor); // Initialize with initialColor
     const [selectedColor, setSelectedColor] = useState(initialColor);
     const [title, setTitle] = useState(initialTitle);
@@ -62,7 +62,7 @@ const NewNote = ({ onCreate, initialTitle = '', initialContent = '', initialColo
         if (!title || !content) return;
 
         onCreate({
-            id: uuidv4(),
+            id: initialId || uuidv4(), // Use existing ID if editing, else generate new UUID
             title,
             content,
             color: selectedColor || colors[0].hex,

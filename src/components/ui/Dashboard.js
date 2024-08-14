@@ -27,7 +27,7 @@ const Dashboard = () => {
             if (editingNote) {
                 console.log(note.id);
                 setNotes(notes.map(n => n.id === editingNote.id ? { ...note, x: editingNote.x, y: editingNote.y } : n));
-                // putData({ ...note, x: editingNote.x, y: editingNote.y });
+                putData({ ...note, x: editingNote.x, y: editingNote.y });
                 setEditingNote(null);
             } else {
                 console.log(note.id);
@@ -130,6 +130,7 @@ const Dashboard = () => {
                             initialTitle={editingNote ? editingNote.title : ''}
                             initialContent={editingNote ? editingNote.content : ''}
                             initialColor={editingNote ? editingNote.color : ''}
+                            initialId={editingNote ? editingNote.id : ''} // Pass initial ID
                         />
                     }
                 </div>
