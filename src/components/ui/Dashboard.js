@@ -3,7 +3,7 @@ import Note from "../notes/Note";
 import newNote from "../../utils/icons/new-note.svg";
 import NewNote from "../notes/NewNote";
 import Button from '@mui/material/Button';
-import { putData } from "../../services/dataService"
+import { putData, deleteData } from "../../services/dataService"
 
 
 const colorOptions = ['#fa9fba', '#8AC256', '#97d2fb', '#fd9873', '#B89CC8'];
@@ -40,7 +40,6 @@ const Dashboard = () => {
     };
 
     const handleEditNote = (id) => {
-        console.log('edit id: ',id);
         const noteToEdit = notes.find(n => n.id === id);
         setEditingNote(noteToEdit);
         setNewNoteEnable(true); 
@@ -48,6 +47,7 @@ const Dashboard = () => {
 
     const handleDeleteNote = (id) => {
         setNotes(notes.filter(n => n.id !== id));
+        deleteData(id);
     };
 
     const handleDragNote = (id, x, y) => {
