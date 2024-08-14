@@ -40,8 +40,8 @@ export const newUser = async (data) => {
 
         console.log("User Data:", userData);
 
-        const userRefAll = ref(db, `${BASE_LOC}/${uid}/all`);
-        const userRefUseful = ref(db, `${BASE_LOC}/${uid}/useful`);
+        const userRefAll = ref(db, `${BASE_LOC}/${uid}/user_details/all`);
+        const userRefUseful = ref(db, `${BASE_LOC}/${uid}/user_details/useful`);
 
         await set(userRefUseful, userData);
 
