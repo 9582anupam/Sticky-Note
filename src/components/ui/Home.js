@@ -69,18 +69,33 @@ const CombinedComponent = () => {
     const [showHome, setShowHome] = useState(false);
     const [fadeOut, setFadeOut] = useState(false);
     const [bgColorChanged, setBgColorChanged] = useState(false);
+    const [animationShown, setAnimationShown] = useState(false);
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            setFadeOut(true); 
-            setBgColorChanged(true); 
-            setTimeout(() => {
-                setBgColorChanged(false); 
-                setShowHome(true); 
-            }, 1000); 
-        }, 3000); 
-        return () => clearTimeout(timer);
+        // Check if the animation has been shown before in this session
+        const hasShownAnimation = sessionStorage.getItem('animationShown');
+        if (hasShownAnimation) {
+            setShowHome(true);
+        } else {
+            setAnimationShown(true);
+        }
     }, []);
+
+    useEffect(() => {
+        if (animationShown) {
+            const timer = setTimeout(() => {
+                setFadeOut(true); 
+                setBgColorChanged(true); 
+                setTimeout(() => {
+                    setBgColorChanged(false); 
+                    setShowHome(true);
+                    // Mark the animation as shown in session storage
+                    sessionStorage.setItem('animationShown', 'true');
+                }, 1000); 
+            }, 3000); 
+            return () => clearTimeout(timer);
+        }
+    }, [animationShown]);
 
     useEffect(() => {
         if (bgColorChanged) {
@@ -113,6 +128,28 @@ const CombinedComponent = () => {
             transition: { duration: 5 },
         },
     };
+
+    const handleClick = () => {
+        // Skip the animation and show home screen immediately
+        setFadeOut(true);
+        setBgColorChanged(true);
+        setTimeout(() => {
+            setBgColorChanged(false);
+            setShowHome(true);
+            // Mark the animation as shown in session storage
+            sessionStorage.setItem('animationShown', 'true');
+        }, 1000);
+    };
+
+    useEffect(() => {
+        // Add event listener for clicks
+        document.addEventListener("click", handleClick);
+
+        // Cleanup event listener on component unmount
+        return () => {
+            document.removeEventListener("click", handleClick);
+        };
+    }, []);
 
     if (showHome) {
         return (
