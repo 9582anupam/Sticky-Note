@@ -6,7 +6,6 @@ import { useInView } from "react-intersection-observer";
 import { TextEffect } from "../animations/TextEffect";
 import "./home.css";
 
-// Define data objects
 const stickyNotes = [
     {
         id: 1,

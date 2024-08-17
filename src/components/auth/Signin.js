@@ -6,12 +6,13 @@ import {
     Typography,
     Box,
     Paper,
+    IconButton,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, signInWithEmailAndPassword } from "../../services/firebase"; // Import Firebase functions
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
-// Define custom styles using styled API
 const StyledPaper = styled(Paper)(({ theme }) => ({
     padding: theme.spacing(4),
     display: "flex",
@@ -43,10 +44,10 @@ const Signin = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setIsSubmitted(true); // Set to true when form is submitted
-        setEmailError(""); // Clear previous email errors
-        setGeneralError(""); // Clear previous general errors
-        setError(""); // Clear previous error message
+        setIsSubmitted(true);
+        setEmailError("");
+        setGeneralError("");
+        setError("");
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
@@ -72,14 +73,23 @@ const Signin = () => {
 
     return (
         <div className="bg-[#121212] h-full">
-            <Container component="main" maxWidth="xs">
+            <Container component="main" maxWidth="xs" className="relative">
                 <StyledPaper elevation={3}>
-                    <Typography
-                        variant="h5"
-                        gutterBottom
-                        sx={{ fontWeight: "bold" }}>
-                        Sign in
-                    </Typography>
+                    <div className="flex items-center">
+                        <IconButton
+                            onClick={() => navigate("/")}
+                            color="inherit"
+                            size="small"
+                            sx={{ position: "absolute", left: "2rem" }}>
+                            <ArrowBackIcon sx={{height: "35px", width: "35px"}}/>
+                        </IconButton>
+                        <Typography
+                            variant="h4"
+                            gutterBottom
+                            sx={{ fontWeight: "bold", margin: "0 auto" }}>
+                            Sign in
+                        </Typography>
+                    </div>
 
                     <StyledForm noValidate onSubmit={handleSubmit}>
                         <TextField
@@ -130,7 +140,7 @@ const Signin = () => {
                         <Box mt={2}>
                             <Typography variant="body2">
                                 Don't have an account?{" "}
-                                <Link to="/signup">Sign Up</Link>
+                                <Link to="/signup" className="text-[#00aaff] text-lg">Sign Up</Link>
                             </Typography>
                         </Box>
                     </StyledForm>

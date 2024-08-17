@@ -7,3 +7,7 @@ input:-moz-autofill {
     background-color: #12121200;
     color: #fff;
 }
+
+.css-gm0pd4-MuiTypography-root {
+    margin-bottom: 0 !important;
+}
