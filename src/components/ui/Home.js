@@ -72,13 +72,13 @@ const CombinedComponent = () => {
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            setFadeOut(true); // Start fade-out effect
-            setBgColorChanged(true); // Change background color
+            setFadeOut(true); 
+            setBgColorChanged(true); 
             setTimeout(() => {
-                setBgColorChanged(false); // Revert background color after 2 seconds
-                setShowHome(true); // Show home screen after fade-out
-            }, 2000); // Duration to keep background color changed
-        }, 4000); // Adjust the time to match the animation duration
+                setBgColorChanged(false); 
+                setShowHome(true); 
+            }, 1000); 
+        }, 3000); 
         return () => clearTimeout(timer);
     }, []);
 
