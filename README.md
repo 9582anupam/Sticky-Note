@@ -73,7 +73,7 @@ To run the application locally, follow these steps:
 Feel free to contribute to this project by submitting pull requests or opening issues. We welcome improvements and suggestions!
 
 ## License
-This project is licensed under the MIT License.
+This project is licensed under the [MIT License](https://github.com/9582anupam/Sticky-Note/blob/main/LICENSE).
 
 ## Author
 - **Anupam**
