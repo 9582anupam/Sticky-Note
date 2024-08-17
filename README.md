@@ -1,70 +1,81 @@
-# Getting Started with Create React App
+# Sticky Note Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This application allows users to create, manage, and organize their notes with a modern and intuitive interface. Built with React and Firebase, this app features secure user authentication, robust note management, and advanced filtering and organization options.
 
-## Available Scripts
+## Deployment Link
+**https://sticky-note-green.vercel.app/**
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### 1. User Authentication
+- **Secure Login System:** Users can sign in to access their personalized notes, ensuring that their data is secure and private.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### 2. Note Management
+- **Add Notes:** Create notes with customizable properties:
+  - **Group:** Categorize notes under different groups.
+  - **Text:** Input the main content of the note.
+  - **Color:** Assign a color to each note for easy identification.
+- **Edit Notes:** Update existing notes, including changing the group, text, or color.
+- **Delete Notes:** Remove notes that are no longer needed.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 3. Filtering and Organization
+- **Filter Notes:** Quickly find relevant notes by filtering based on group or color.
+- **Drag and Drop:** Rearrange notes freely within the interface using drag-and-drop functionality.
 
-### `npm test`
+### 4. Hosting
+- **Deployment:** The application is hosted on [Vercel](https://www.Vercel.com/), making it accessible online.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Optional Features (Bonus Points)
 
-### `npm run build`
+- **Reset Position to Grid:** Users can reset the position of all notes to a default grid layout.
+- **Remember Last Position:** The application remembers the last position of each note when the user logs out and logs back in.
+- **Group View:** View all notes within a specific group in a consolidated manner.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technology Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Frontend:** React
+- **Backend:** Firebase (for authentication and database)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Setup and Installation
 
-### `npm run eject`
+To run the application locally, follow these steps:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/9582anupam/Sticky-Note
+   cd Sticky-Note
+   ```
+2. **Install Dependencies**
+    ```bash
+    npm install
+    ```
+3. **Configure Firebase**
+    - Create a Firebase project and obtain your Firebase configuration details.
+    - Add your Firebase configuration to a .env file in the root directory with the following format:
+    ```bash
+    REACT_APP_FIREBASE_API_KEY=YOUR_API_KEY
+    REACT_APP_FIREBASE_AUTH_DOMAIN=YOUR_AUTH_DOMAIN
+    REACT_APP_FIREBASE_PROJECT_ID=YOUR_PROJECT_ID
+    REACT_APP_FIREBASE_STORAGE_BUCKET=YOUR_STORAGE_BUCKET
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=YOUR_MESSAGING_SENDER_ID
+    REACT_APP_FIREBASE_APP_ID=YOUR_APP_ID
+    REACT_APP_FIREBASE_MEASUREMENT_ID=YOUR_MEASUREMENT_ID
+    REACT_APP_FIREBASE_DATABASE_URL=YOUR_DATABASE_URL
+    ```
+4. **Start the Application**
+    ```bash
+    npm start
+    ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    The app will be available at http://localhost:3000
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Contributing
+Feel free to contribute to this project by submitting pull requests or opening issues. We welcome improvements and suggestions!
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## License
+This project is licensed under the MIT License.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Author
+- **Anupam**
+- **9582anupamk@gmail.com**
+- **https://github.com/9582anupam/**
