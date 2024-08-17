@@ -81,7 +81,7 @@ const CombinedComponent = () => {
     }, []);
 
     useEffect(() => {
-        if (animationShown) {
+        if (animationShown && !showHome) {
             const timer = setTimeout(() => {
                 setFadeOut(true); 
                 setBgColorChanged(true); 
@@ -94,7 +94,7 @@ const CombinedComponent = () => {
             }, 3000); 
             return () => clearTimeout(timer);
         }
-    }, [animationShown]);
+    }, [animationShown, showHome]);
 
     useEffect(() => {
         if (bgColorChanged) {
@@ -128,27 +128,9 @@ const CombinedComponent = () => {
         },
     };
 
-    const handleClick = () => {
-        // Skip the animation and show home screen immediately
-        setFadeOut(true);
-        setBgColorChanged(true);
-        setTimeout(() => {
-            setBgColorChanged(false);
-            setShowHome(true);
-            // Mark the animation as shown in session storage
-            sessionStorage.setItem('animationShown', 'true');
-        }, 1000);
+    const removeAnimation = () => {
+        setShowHome(true);
     };
-
-    useEffect(() => {
-        // Add event listener for clicks
-        document.addEventListener("click", handleClick);
-
-        // Cleanup event listener on component unmount
-        return () => {
-            document.removeEventListener("click", handleClick);
-        };
-    }, []);
 
     if (showHome) {
         return (
@@ -392,7 +374,7 @@ const CombinedComponent = () => {
         <div
             className={`bg-[#121212] text-gray-300 h-screen w-full flex flex-col justify-center items-center text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-medium ${
                 fadeOut ? "fade-out" : ""
-            }`}>
+            }`} onClick={removeAnimation} >
             <TextEffect per="char" preset="fade">
                 Welcome To Sticky Notes
             </TextEffect>
