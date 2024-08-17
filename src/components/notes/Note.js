@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Draggable from "react-draggable";
 import "./note.css";
 import editNote from "../../utils/icons/edit-note.svg";
@@ -17,8 +16,8 @@ const Note = ({
     onDelete,
     onDrag,
 }) => {
-    const [title] = useState(initialTitle); // Title is now read-only
-    const [description] = useState(initialDescription); // Description is now read-only
+    const title = initialTitle;
+    const description = initialDescription;
 
     const handleDrag = (e, data) => {
         onDrag(id, data.x, data.y);
