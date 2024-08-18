@@ -249,7 +249,7 @@ const CombinedComponent = () => {
                                     </p>
                                 </motion.div>
                             </Link>
-                            <Link to="/Dashboard">
+                            {/* <Link to="/Dashboard">
                                 <motion.div
                                     className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-2xl font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 h-10 px-4 mx-4 my-1 bg-gray-300 text-black py-6 delay-[2500]"
                                     initial={{ opacity: 0 }}
@@ -269,7 +269,7 @@ const CombinedComponent = () => {
                                         />
                                     </IconButton>
                                 </motion.div>
-                            </Link>
+                            </Link> */}
                         </motion.div>
                     </section>
 
