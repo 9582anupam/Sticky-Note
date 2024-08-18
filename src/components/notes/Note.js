@@ -6,7 +6,6 @@ import { IconButton } from "@mui/material";
 import MinimizeIcon from "@mui/icons-material/Minimize";
 import Tooltip from "@mui/material/Tooltip";
 import { useState } from "react";
-import ControlCameraIcon from '@mui/icons-material/ControlCamera';
 
 const Note = ({
     id,
@@ -32,7 +31,7 @@ const Note = ({
     const handleMouseDown = () => {
         setIsGrabbing(true);
     };
-
+    
     const handleMouseUp = () => {
         setIsGrabbing(false);
     };
@@ -46,22 +45,31 @@ const Note = ({
             defaultPosition={{ x: initialX, y: initialY }}
             onStop={handleDrag}
             handle=".content-handle"
-        >
+            cancel=".content-cancel">
             <div
-                className={`note w-80 h-80 rounded select-none ${
-                    isHighlighted ? "highlighted" : ""
-                } ${isMinimized && "h-auto"}`}
-                style={{ ...style, position: "absolute" }}>
+                className={`note w-80 h-80 rounded select-none transition-cursor ${isGrabbing ? "cursor-grabbing" : "cursor-grab"} ${isHighlighted ? "highlighted" : ""} ${isMinimized && "h-auto"}`}
+                style={{ ...style, position: "absolute" }}
+                onPointerDown={handleMouseDown}
+                onPointerUp={handleMouseUp}
+                >
+                
                 <div
-                    className="flex flex-col h-full font-shadows"
+                    className="flex flex-col h-full font-shadows content-handle"
                     onDoubleClick={() => onEdit(id)}>
                     {/* Header */}
-                    <div className="flex justify-between items-center border-2 border-transparent rounded-t hover:border-white  text-cyan-950">
+                    <div className="flex justify-between items-center border-2 border-transparent rounded-t hover:border-white  text-cyan-950 ">
                         <div>
                             <Tooltip title="minimize">
-                                <IconButton size="small" onClick={() => minimize(id)}>
+                                <IconButton
+                                    size="small"
+                                    onClick={() => minimize(id)}
+                                    className="content-cancel">
                                     <MinimizeIcon
-                                        sx={{ height: "28px", width: "28px", color: "black"}}
+                                        sx={{
+                                            height: "28px",
+                                            width: "28px",
+                                            color: "black",
+                                        }}
                                     />
                                 </IconButton>
                             </Tooltip>
@@ -69,11 +77,11 @@ const Note = ({
                                 <IconButton
                                     size="small"
                                     onClick={() => onDelete(id)}
-                                    className="p-1">
+                                    className="p-1 content-cancel select-none">
                                     <img
                                         src={closeCross}
                                         alt="delete"
-                                        className="h-7"
+                                        className="h-7 select-none"
                                     />
                                 </IconButton>
                             </Tooltip>
@@ -83,20 +91,10 @@ const Note = ({
                         </div>
 
                         <div>
-                            {
-                                isMinimized &&
-                                <Tooltip title="drag" className="content-handle">
-                                    <IconButton size="small">
-                                        <ControlCameraIcon
-                                            sx={{ height: "28px", width: "28px", color: "black" }}
-                                        />
-                                    </IconButton>
-                                </Tooltip>
-                            }
                             <Tooltip title="edit">
                                 <IconButton
                                     onClick={() => onEdit(id)}
-                                    className="p-1">
+                                    className="p-1 content-cancel">
                                     <img
                                         src={editNote}
                                         alt="edit"
@@ -107,23 +105,15 @@ const Note = ({
                         </div>
                     </div>
                     <div className="w-full h-[2px] bg-black"></div>
-                    
-                    {
-                        !isMinimized &&
+
+                    {!isMinimized && (
                         <div
-                            className={`flex-1 overflow-y-auto p-2 border-2 border-transparent rounded-b 
-                            ${
-                                isGrabbing ? "cursor-grabbing" : "cursor-grab"
-                            } transition-cursor content-handle`}
-                            onMouseDown={handleMouseDown}
-                            onMouseUp={handleMouseUp}
-                            onMouseLeave={() => setIsGrabbing(false)}
-                        >
+                            className={`flex-1 overflow-y-auto p-2 border-2 border-transparent rounded-b`}>
                             <p className="text-lg md:text-xl lg:text-2xl font-medium leading-relaxed text-left whitespace-pre-wrap break-words">
                                 {description}
                             </p>
                         </div>
-                    }
+                    )}
                 </div>
             </div>
         </Draggable>

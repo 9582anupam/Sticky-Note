@@ -19,3 +19,12 @@
 .note.highlighted {
     animation: highlight 200ms ease-in-out;
 }
+
+img {
+    user-select: none; /* Prevents text selection */
+    -webkit-user-drag: none; /* Prevents dragging on WebKit browsers */
+    -moz-user-drag: none; /* Prevents dragging on Firefox */
+    -ms-user-drag: none; /* Prevents dragging on IE */
+    -webkit-user-drag: none;
+  }
+  

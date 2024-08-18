@@ -4,8 +4,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { TextEffect } from "../animations/TextEffect";
-import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
-import { IconButton } from "@mui/material";
+// import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+// import { IconButton } from "@mui/material";
 import "./home.css";
 
 const stickyNotes = [
