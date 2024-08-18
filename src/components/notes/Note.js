@@ -6,6 +6,7 @@ import { IconButton } from "@mui/material";
 import MinimizeIcon from "@mui/icons-material/Minimize";
 import Tooltip from "@mui/material/Tooltip";
 import { useState } from "react";
+import { useRef } from "react";
 
 const Note = ({
     id,
@@ -23,6 +24,7 @@ const Note = ({
     const description = initialDescription;
     const [isGrabbing, setIsGrabbing] = useState(false);
     const [isMinimized, setIsMinimized] = useState(false);
+    const nodeRef = useRef(null);
 
     const minimize = () => {
         setIsMinimized(!isMinimized);
@@ -45,17 +47,21 @@ const Note = ({
             defaultPosition={{ x: initialX, y: initialY }}
             onStop={handleDrag}
             handle=".content-handle"
-            cancel=".content-cancel">
+            cancel=".content-cancel"
+            nodeRef={nodeRef}
+            >
+                
             <div
-                className={`note w-80 h-80 rounded select-none transition-cursor ${isGrabbing ? "cursor-grabbing" : "cursor-grab"} ${isHighlighted ? "highlighted" : ""} ${isMinimized && "h-auto"}`}
+                className={`note w-80 h-80 rounded select-none transition-cursor content-handle ${isGrabbing ? "cursor-grabbing" : "cursor-grab"} ${isHighlighted ? "highlighted" : ""} ${isMinimized && "h-auto"}`}
                 style={{ ...style, position: "absolute" }}
                 onPointerDown={handleMouseDown}
                 onPointerUp={handleMouseUp}
+                ref={nodeRef}
                 >
                 
                 <div
-                    className="flex flex-col h-full font-shadows content-handle"
-                    onDoubleClick={() => onEdit(id)}>
+                    className="flex flex-col h-full font-shadows "
+                    >
                     {/* Header */}
                     <div className="flex justify-between items-center border-2 border-transparent rounded-t hover:border-white  text-cyan-950 ">
                         <div>
