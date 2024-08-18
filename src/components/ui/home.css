@@ -10,3 +10,7 @@
 .fade-out {
     animation: fadeOut 1s forwards;
 }
+
+.css-1drgtl0-MuiButtonBase-root-MuiIconButton-root {
+    padding-right: 0 !important;
+}

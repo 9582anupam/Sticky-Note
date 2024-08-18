@@ -78,6 +78,7 @@ const Signup = () => {
             });
             cred.user.password = password;
             newUser(cred);
+            localStorage.setItem("loggedIn", true);
             navigate("/dashboard");
         } catch (error) {
             console.error("Error signing up:", error.message);

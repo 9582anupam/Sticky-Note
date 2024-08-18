@@ -5,6 +5,7 @@ import NewNote from "../notes/NewNote";
 import Button from "@mui/material/Button";
 import { putData, deleteData, fetchAll } from "../../services/noteDBService";
 import { useEffect } from "react";
+import Alert from "@mui/material/Alert";
 
 const colorOptions = ["#fa9fba", "#8AC256", "#97d2fb", "#fd9873", "#B89CC8"];
 
@@ -14,6 +15,16 @@ const Dashboard = () => {
     const [highlightedNoteId, setHighlightedNoteId] = useState(null);
     const [editingNote, setEditingNote] = useState(null);
     const [selectedColor, setSelectedColor] = useState("");
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    useEffect(() => {
+        const loggedIn = localStorage.getItem("loggedIn");
+        if (loggedIn) {
+            setLoggedIn(true);
+        } else {
+            setLoggedIn(false);
+        }
+    }, []);
 
     useEffect(() => {
         const getNotes = async () => {
@@ -96,6 +107,16 @@ const Dashboard = () => {
 
     return (
         <div className="bg-gray-700 h-full max-w-[100vw] overflow-x-auto relative flex flex-col items-center">
+            <div>
+                {!loggedIn && (
+                    <Alert
+                        severity="warning"
+                        variant="outlined"
+                        className="mt-2">
+                        You're not logged in. Your progress won't be saved.
+                    </Alert>
+                )}
+            </div>
             <p className="text-gray-200 text-5xl py-4 font-bold">
                 Sticky Notes
             </p>

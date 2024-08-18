@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { useInView } from "react-intersection-observer";
 import { TextEffect } from "../animations/TextEffect";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import { IconButton } from "@mui/material";
 import "./home.css";
 
 const stickyNotes = [
@@ -72,7 +74,7 @@ const CombinedComponent = () => {
 
     useEffect(() => {
         // Check if the animation has been shown before in this session
-        const hasShownAnimation = sessionStorage.getItem('animationShown');
+        const hasShownAnimation = sessionStorage.getItem("animationShown");
         if (hasShownAnimation) {
             setShowHome(true);
         } else {
@@ -83,15 +85,15 @@ const CombinedComponent = () => {
     useEffect(() => {
         if (animationShown && !showHome) {
             const timer = setTimeout(() => {
-                setFadeOut(true); 
-                setBgColorChanged(true); 
+                setFadeOut(true);
+                setBgColorChanged(true);
                 setTimeout(() => {
-                    setBgColorChanged(false); 
+                    setBgColorChanged(false);
                     setShowHome(true);
                     // Mark the animation as shown in session storage
-                    sessionStorage.setItem('animationShown', 'true');
-                }, 1000); 
-            }, 3000); 
+                    sessionStorage.setItem("animationShown", "true");
+                }, 1000);
+            }, 3000);
             return () => clearTimeout(timer);
         }
     }, [animationShown, showHome]);
@@ -168,7 +170,7 @@ const CombinedComponent = () => {
                                 animate={{ opacity: 1 }}
                                 transition={{ duration: 2 }}>
                                 <Link
-                                    to="/Signin"
+                                    to="/Signup"
                                     className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-lg font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-3 py-2">
                                     Join Now
                                 </Link>
@@ -236,17 +238,38 @@ const CombinedComponent = () => {
                                 </div>
                             </motion.div>
 
-                            <motion.div
-                                className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-2xl font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 h-10 mx-4 my-1 bg-gray-300 text-black px-4 py-6 delay-[2500]"
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 2, delay: 2.5 }}>
-                                <Link
-                                    to="/Signin"
-                                    className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-2xl font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 h-10 mx-4 my-1 bg-gray-300 text-black px-4 py-6">
-                                    Join Now
-                                </Link>
-                            </motion.div>
+                            <Link to="/Signup">
+                                <motion.div
+                                    className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-2xl font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 h-10 px-4 mx-4 my-1 bg-gray-300 text-black py-6 delay-[2500]"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 2, delay: 2.5 }}>
+                                    <p className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-2xl font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 h-10 my-1 bg-gray-300 text-black py-6">
+                                        Join Now
+                                    </p>
+                                </motion.div>
+                            </Link>
+                            <Link to="/Dashboard">
+                                <motion.div
+                                    className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-2xl font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 h-10 px-4 mx-4 my-1 bg-gray-300 text-black py-6 delay-[2500]"
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    transition={{ duration: 2, delay: 2.5 }}>
+                                    <p className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-2xl font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-primary focus:ring-opacity-50 h-10 my-1 bg-gray-300 text-black py-6">
+                                        Explore
+                                    </p>
+
+                                    <IconButton>
+                                        <ArrowRightAltIcon
+                                            sx={{
+                                                color: "black",
+                                                width: "30px",
+                                                height: "30px",
+                                            }}
+                                        />
+                                    </IconButton>
+                                </motion.div>
+                            </Link>
                         </motion.div>
                     </section>
 
@@ -374,7 +397,8 @@ const CombinedComponent = () => {
         <div
             className={`bg-[#121212] text-gray-300 h-screen w-full flex flex-col justify-center items-center text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-medium ${
                 fadeOut ? "fade-out" : ""
-            }`} onClick={removeAnimation} >
+            }`}
+            onClick={removeAnimation}>
             <TextEffect per="char" preset="fade">
                 Welcome To Sticky Notes
             </TextEffect>

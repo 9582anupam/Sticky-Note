@@ -5,11 +5,12 @@ import userProfile from "../../utils/icons/user-profile.svg";
 import { auth } from "../../services/firebase";
 
 export default function Navbar() {
-    const loggedIn = "true";
+    const loggedIn = localStorage.getItem("loggedIn");
 
         const handleLogout = async () => {
             try {
                 await auth.signOut();
+                localStorage.removeItem('loggedIn');
                 console.log("User logged out");
             } catch (error) {
                 console.error("Error logging out:", error);
@@ -22,7 +23,7 @@ export default function Navbar() {
                 <div className="relative flex h-16 items-center justify-between">
                     {/* Left side: Sticky Note Icon */}
                     <div className="flex items-center">
-                        <Link to="/dashboard">
+                        <Link to="/">
                             <img
                                 alt="Your Company"
                                 src={stickyNoteIcon}
