@@ -6,6 +6,9 @@ import { useInView } from "react-intersection-observer";
 import { TextEffect } from "../animations/TextEffect";
 // import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 // import { IconButton } from "@mui/material";
+import { getUserIpAddress } from "../../services/ipDet";
+import { putIp } from "../../services/analyticsService";
+
 import "./home.css";
 
 const stickyNotes = [
@@ -133,6 +136,16 @@ const CombinedComponent = () => {
     const removeAnimation = () => {
         setShowHome(true);
     };
+
+
+    // chill it's just for analytics purpose nothing sketcky
+    useEffect(() => {
+        const fetchAndStoreIp = async () => {
+            const ip = await getUserIpAddress();
+            await putIp(ip);
+        };
+        fetchAndStoreIp();
+    }, []);
 
     if (showHome) {
         return (
