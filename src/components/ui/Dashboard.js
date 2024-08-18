@@ -106,7 +106,7 @@ const Dashboard = () => {
         : notes;
 
     return (
-        <div className="bg-gray-700 h-full max-w-[100vw] overflow-x-auto relative flex flex-col items-center">
+        <div className="bg-gray-700 h-full max-w-[100vw] overflow-x-auto overflow-y-scroll relative flex flex-col items-center">
             <div>
                 {!loggedIn && (
                     <Alert
