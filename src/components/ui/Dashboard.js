@@ -29,7 +29,6 @@ const Dashboard = () => {
     useEffect(() => {
         const getNotes = async () => {
             const data = await fetchAll();
-            console.log("data", data);
 
             const notesArray = Object.keys(data).map((key) => ({
                 ...data[key],

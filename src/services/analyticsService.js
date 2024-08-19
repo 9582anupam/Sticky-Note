@@ -23,11 +23,8 @@ export const putIp = async (ip) => {
 
             // Save the new IP address
             await set(newIpRef, ip);
-            console.log('IP address saved successfully with ID:', newId);
         } catch (error) {
             console.error('Error saving IP address:', error);
         }
-    } else {
-        console.log("No IP address provided.");
     }
 };

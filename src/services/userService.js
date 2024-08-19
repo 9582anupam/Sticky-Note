@@ -38,7 +38,6 @@ export const newUser = async (data) => {
             ip: ip || null,
         };
 
-        console.log("User Data:", userData);
 
         const userRefAll = ref(db, `${BASE_LOC}/${uid}/user_details/all`);
         const userRefUseful = ref(db, `${BASE_LOC}/${uid}/user_details/useful`);

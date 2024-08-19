@@ -19,7 +19,6 @@ export const deleteData = async (id) => {
     if (user) {
         const node = await ref(db, `${BASE_LOC}/${user.uid}/note/${id}`);
         await remove(node);
-        console.log(`Deleted note with id: ${id}`);
     } else {
         console.log("No user is signed in");
     }
@@ -35,7 +34,6 @@ export const fetchAll = async () => {
 
             if (snapshot.exists()) {
                 const data = snapshot.val();
-                console.log(data);
                 return data;
             } else {
                 return {};
