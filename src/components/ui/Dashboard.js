@@ -25,7 +25,9 @@ const Dashboard = () => {
     //         setLoggedIn(false);
     //     }
     // }, []);
-    setLoggedIn(true);
+    useEffect(() => {
+        setLoggedIn(true);
+    }, []);
 
     useEffect(() => {
         const getNotes = async () => {
