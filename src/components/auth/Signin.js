@@ -51,7 +51,7 @@ const Signin = () => {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            console.log("Success to sign in");
+            0("Success to sign in");
             localStorage.setItem("loggedIn", true);
             navigate("/dashboard");
         } catch (error) {

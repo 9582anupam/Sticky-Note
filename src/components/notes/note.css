@@ -28,3 +28,25 @@ img {
     -webkit-user-drag: none;
   }
   
+
+.resizable-box {
+    position: absolute !important;
+    overflow: hidden;
+}
+
+.resizable-handle {
+    background-image: url('./resize.svg');
+    height: 20px;
+    width: 20px;
+    object-fit: contain !important;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    z-index: 20;
+    cursor: se-resize;
+}
+
+.resizable-handle.hide {
+    display: none;
+}
+
