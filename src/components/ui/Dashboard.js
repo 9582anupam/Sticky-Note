@@ -17,14 +17,15 @@ const Dashboard = () => {
     const [selectedColor, setSelectedColor] = useState("");
     const [loggedIn, setLoggedIn] = useState(false);
 
-    useEffect(() => {
-        const loggedIn = localStorage.getItem("loggedIn");
-        if (loggedIn) {
-            setLoggedIn(true);
-        } else {
-            setLoggedIn(false);
-        }
-    }, []);
+    // useEffect(() => {
+    //     const loggedIn = localStorage.getItem("loggedIn");
+    //     if (loggedIn) {
+    //         setLoggedIn(true);
+    //     } else {
+    //         setLoggedIn(false);
+    //     }
+    // }, []);
+    setLoggedIn(true);
 
     useEffect(() => {
         const getNotes = async () => {

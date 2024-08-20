@@ -5,7 +5,8 @@ import userProfile from "../../utils/icons/user-profile.svg";
 import { auth } from "../../services/firebase";
 
 export default function Navbar() {
-    const loggedIn = localStorage.getItem("loggedIn");
+    // const loggedIn = localStorage.getItem("loggedIn");
+    const loggedIn = true;
 
         const handleLogout = async () => {
             try {
