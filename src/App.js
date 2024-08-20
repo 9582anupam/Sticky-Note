@@ -9,7 +9,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Navigate } from "react-router-dom";
-import Testing from "./components/ui/Testing";
 
 // Create a dark theme
 const darkTheme = createTheme({
@@ -37,7 +36,6 @@ function App() {
             <ThemeProvider theme={darkTheme}>
                 <div className="App text-center text-3xl h-svh">
                     <Routes>
-                        <Route path="/testing" element={<Testing />} />
                         <Route path="/" element={<Home />} />
                         <Route path="/signin" element={user ? <Navigate to="/dashboard" /> : <Signin />} />
                         <Route path="/signup" element={user ? <Navigate to="/dashboard" /> : <Signup />} />
