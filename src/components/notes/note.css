@@ -50,3 +50,10 @@ img {
     display: none;
 }
 
+.note {
+    ::-webkit-scrollbar {
+        width: 20px;
+        height: 8px;
+    }
+}
+

@@ -55,7 +55,7 @@ const Note = ({
             <ResizableBox
                 width={320}
                 height={320}
-                minConstraints={[176, 100]}
+                minConstraints={[186, 100]}
                 maxConstraints={[500, 500]}
                 className="resizable-box"
                 handle={
