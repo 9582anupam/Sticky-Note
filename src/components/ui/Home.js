@@ -87,6 +87,7 @@ const CombinedComponent = () => {
 
     useEffect(() => {
         if (animationShown && !showHome) {
+            sessionStorage.setItem("animationShown", "true");
             const timer = setTimeout(() => {
                 setFadeOut(true);
                 setBgColorChanged(true);
@@ -94,7 +95,6 @@ const CombinedComponent = () => {
                     setBgColorChanged(false);
                     setShowHome(true);
                     // Mark the animation as shown in session storage
-                    sessionStorage.setItem("animationShown", "true");
                 }, 1000);
             }, 3000);
             return () => clearTimeout(timer);
