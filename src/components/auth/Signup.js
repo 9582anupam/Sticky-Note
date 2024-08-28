@@ -14,6 +14,7 @@ import {
     auth,
     createUserWithEmailAndPassword,
     updateProfile,
+    signInWithGoogle,
 } from "../../services/firebase";
 import "./input.css";
 import { newUser } from "../../services/userService";
@@ -91,6 +92,22 @@ const Signup = () => {
             } else {
                 setError("Something went wrong, contact the developer");
             }
+        }
+    };
+
+    const handleGoogleSignUp = async () => {
+        try {
+            const result = await signInWithGoogle();
+            const user = result.user;
+            await updateProfile(user, {
+                displayName: name,
+            });
+            newUser(result);
+            localStorage.setItem("loggedIn", true);
+            navigate("/dashboard");
+        } catch (error) {
+            console.error("Error signing up with Google:", error.message);
+            setError("Something went wrong with Google Sign-Up, contact the developer");
         }
     };
 
@@ -187,6 +204,15 @@ const Signup = () => {
                             color="primary">
                             Sign Up
                         </SubmitButton>
+                        <Button
+                            fullWidth
+                            variant="outlined"
+                            color="primary"
+                            onClick={handleGoogleSignUp}
+                            sx={{ marginTop: 2 }}
+                        >
+                            Sign Up with Google
+                        </Button>
                         <Box mt={2}>
                             <Typography variant="body2">
                                 Already have an account?{" "}

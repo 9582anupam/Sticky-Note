@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/system";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, signInWithEmailAndPassword } from "../../services/firebase"; // Import Firebase functions
+import { auth, signInWithEmailAndPassword, signInWithGoogle } from "../../services/firebase"; // Import Firebase functions
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 const StyledPaper = styled(Paper)(({ theme }) => ({
@@ -33,13 +33,17 @@ const SubmitButton = styled(Button)(({ theme }) => ({
     margin: theme.spacing(3, 0, 2),
 }));
 
+const GoogleButton = styled(Button)(({ theme }) => ({
+    margin: theme.spacing(2, 0),
+}));
+
 const Signin = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [emailError, setEmailError] = useState("");
     const [generalError, setGeneralError] = useState("");
-    const [isSubmitted, setIsSubmitted] = useState(false); // New state to track submission
-    const [error, setError] = useState(""); // General error message
+    const [isSubmitted, setIsSubmitted] = useState(false);
+    const [error, setError] = useState("");
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
@@ -51,7 +55,7 @@ const Signin = () => {
 
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            0("Success to sign in");
+            console.log("Success to sign in");
             localStorage.setItem("loggedIn", true);
             navigate("/dashboard");
         } catch (error) {
@@ -69,6 +73,17 @@ const Signin = () => {
                 setGeneralError("");
                 setEmailError("");
             }
+        }
+    };
+
+    const handleGoogleSignIn = async () => {
+        try {
+            await signInWithGoogle();
+            localStorage.setItem("loggedIn", true);
+            navigate("/dashboard");
+        } catch (error) {
+            console.error("Error signing in with Google:", error.message);
+            setError("Something went wrong with Google sign-in. Try again later.");
         }
     };
 
@@ -138,6 +153,12 @@ const Signin = () => {
                             color="primary">
                             Sign In
                         </SubmitButton>
+                        <GoogleButton
+                            fullWidth
+                            variant="outlined"
+                            onClick={handleGoogleSignIn}>
+                            Sign In with Google
+                        </GoogleButton>
                         <Box mt={2}>
                             <Typography variant="body2">
                                 Don't have an account?{" "}
