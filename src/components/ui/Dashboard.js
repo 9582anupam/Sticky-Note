@@ -155,12 +155,15 @@ const Dashboard = () => {
                 {filteredNotes.map((note) => (
                     <Note
                         key={note.id}
+                        note={note}
                         id={note.id}
                         initialTitle={note.title}
                         initialDescription={note.content}
                         initialX={note.x}
                         initialY={note.y}
                         style={{ backgroundColor: note.color }}
+                        height={note.height}
+                        width={note.width}
                         isHighlighted={note.id === highlightedNoteId}
                         onEdit={handleEditNote}
                         onDelete={handleDeleteNote}

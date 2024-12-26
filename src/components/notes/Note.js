@@ -9,14 +9,18 @@ import { useState } from "react";
 // import { useRef } from "react";
 import { ResizableBox } from "react-resizable";
 import "react-resizable/css/styles.css";
+import { putData } from "../../services/noteDBService";
 
 const Note = ({
     id,
+    note,
     initialTitle = "Untitled",
     initialDescription = "No description",
     style = {},
     initialX,
     initialY,
+    height,
+    width,
     isHighlighted = false,
     onEdit,
     onDelete,
@@ -44,6 +48,10 @@ const Note = ({
         onDrag(id, data.x, data.y);
     };
 
+    const handleResizeStop = (e, data) => {
+        putData({...note, width: data.size.width, height: data.size.height });
+    };
+
     return (
         <Draggable
             defaultPosition={{ x: initialX, y: initialY }}
@@ -53,10 +61,11 @@ const Note = ({
             // nodeRef={nodeRef}
         >
             <ResizableBox
-                width={320}
-                height={320}
+                width={width || 320}
+                height={height || 320}
                 minConstraints={[186, 100]}
                 maxConstraints={[500, 500]}
+                onResizeStop={(e, data) => {handleResizeStop(e, data)}}
                 className="resizable-box"
                 handle={
                     isMinimized ? (
