@@ -36,6 +36,7 @@ const Note = ({
     const handleMinimize = () => {
         setIsMinimized(!isMinimized);
         putData({...note, minimize: !isMinimized });
+        // height = 53.6;
     };
 
     const handleMouseDown = () => {
@@ -64,7 +65,7 @@ const Note = ({
         >
             <ResizableBox
                 width={width || 320}
-                height={height || 320}
+                height={isMinimized ? 53.6 : height || 320}
                 minConstraints={[186, 100]}
                 maxConstraints={[500, 500]}
                 onResizeStop={(e, data) => {handleResizeStop(e, data)}}
@@ -82,7 +83,7 @@ const Note = ({
                     } rounded select-none transition-cursor content-handle ${
                         isGrabbing ? "cursor-grabbing" : "cursor-grab"
                     } ${isHighlighted ? "highlighted" : ""} ${
-                        isMinimized && "h-auto"
+                        isMinimized && "h-fit"
                     }`}
                     style={{ ...style, position: "absolute" }}
                     onPointerDown={handleMouseDown}
@@ -120,11 +121,11 @@ const Note = ({
                                     </IconButton>
                                 </Tooltip>
                             </div>
-                            <div className="text-base md:text-xl lg:text-2xl font-bold p-2 text-center truncate ">
+                            <p className="text-base md:text-xl lg:text-2xl font-bold m-2 text-center truncate flex-1">
                                 {title}
-                            </div>
+                            </p>
 
-                            <div>
+                            <div className="">
                                 <Tooltip title="edit">
                                     <IconButton
                                         onClick={() => onEdit(id)}
