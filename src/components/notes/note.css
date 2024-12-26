@@ -26,15 +26,14 @@ img {
     -moz-user-drag: none; /* Prevents dragging on Firefox */
     -ms-user-drag: none; /* Prevents dragging on IE */
     -webkit-user-drag: none;
-  }
-  
+}
 
 .resizable-box {
     position: absolute !important;
 }
 
 .resizable-handle {
-    background-image: url('./resize.svg');
+    background-image: url("./resize.svg");
     height: 20px;
     width: 20px;
     object-fit: contain !important;
@@ -55,4 +54,3 @@ img {
         height: 8px;
     }
 }
-

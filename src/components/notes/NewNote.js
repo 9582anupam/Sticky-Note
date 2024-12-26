@@ -37,7 +37,9 @@ const NewNote = ({
     initialId = "",
 }) => {
     const defaultColor = colors[0].hex; // Default color
-    const [selectedColor, setSelectedColor] = useState(initialColor || defaultColor);
+    const [selectedColor, setSelectedColor] = useState(
+        initialColor || defaultColor
+    );
     const [title, setTitle] = useState(initialTitle);
     const [content, setContent] = useState(initialContent);
 
@@ -77,8 +79,7 @@ const NewNote = ({
                 bgcolor: isDarkMode ? "#333" : "white",
                 borderTopRightRadius: "15px",
                 color: isDarkMode ? "white" : "black",
-            }}
-        >
+            }}>
             <Typography variant="h6" gutterBottom>
                 {initialTitle ? "Edit Note" : "New Note"}
             </Typography>
@@ -88,8 +89,7 @@ const NewNote = ({
                     justifyContent: "space-between",
                     mb: 2,
                 }}
-                size="small"
-            >
+                size="small">
                 {colors.map((color) => (
                     <ColorCircle
                         key={color.hex}
@@ -133,8 +133,7 @@ const NewNote = ({
                 <Button
                     variant="contained"
                     color="primary"
-                    onClick={handleCreateNote}
-                >
+                    onClick={handleCreateNote}>
                     {initialTitle ? "Update" : "Create"}
                 </Button>
             </Box>

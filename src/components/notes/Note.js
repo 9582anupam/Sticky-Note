@@ -35,8 +35,7 @@ const Note = ({
 
     const handleMinimize = () => {
         setIsMinimized(!isMinimized);
-        putData({...note, minimize: !isMinimized });
-        // height = 53.6;
+        putData({ ...note, minimize: !isMinimized });
     };
 
     const handleMouseDown = () => {
@@ -52,7 +51,7 @@ const Note = ({
     };
 
     const handleResizeStop = (e, data) => {
-        putData({...note, width: data.size.width, height: data.size.height });
+        putData({ ...note, width: data.size.width, height: data.size.height });
     };
 
     return (
@@ -68,11 +67,13 @@ const Note = ({
                 height={isMinimized ? 53.6 : height || 320}
                 minConstraints={[186, 100]}
                 maxConstraints={[500, 500]}
-                onResizeStop={(e, data) => {handleResizeStop(e, data)}}
+                onResizeStop={(e, data) => {
+                    handleResizeStop(e, data);
+                }}
                 className="resizable-box"
                 handle={
                     isMinimized ? (
-                            <div className="resizable-handle hide"></div>
+                        <div className="resizable-handle hide"></div>
                     ) : (
                         <div className="resizable-handle"></div>
                     )
@@ -89,7 +90,7 @@ const Note = ({
                     onPointerDown={handleMouseDown}
                     onPointerUp={handleMouseUp}
                     // ref={nodeRef}
-                    >
+                >
                     <div className="flex flex-col h-full font-shadows ">
                         {/* Header */}
                         <div className="flex justify-between items-center border-2 border-transparent rounded-t hover:border-white  text-cyan-950 ">
