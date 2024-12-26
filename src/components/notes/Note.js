@@ -21,6 +21,7 @@ const Note = ({
     initialY,
     height,
     width,
+    minimize,
     isHighlighted = false,
     onEdit,
     onDelete,
@@ -29,11 +30,12 @@ const Note = ({
     const title = initialTitle;
     const description = initialDescription;
     const [isGrabbing, setIsGrabbing] = useState(false);
-    const [isMinimized, setIsMinimized] = useState(false);
+    const [isMinimized, setIsMinimized] = useState(minimize);
     // const nodeRef = useRef(null);
 
-    const minimize = () => {
+    const handleMinimize = () => {
         setIsMinimized(!isMinimized);
+        putData({...note, minimize: !isMinimized });
     };
 
     const handleMouseDown = () => {
@@ -94,7 +96,7 @@ const Note = ({
                                 <Tooltip title="minimize">
                                     <IconButton
                                         size="small"
-                                        onClick={() => minimize(id)}
+                                        onClick={() => handleMinimize(id)}
                                         className="content-cancel">
                                         <MinimizeIcon
                                             sx={{

@@ -164,6 +164,7 @@ const Dashboard = () => {
                         style={{ backgroundColor: note.color }}
                         height={note.height}
                         width={note.width}
+                        minimize={note.minimize}
                         isHighlighted={note.id === highlightedNoteId}
                         onEdit={handleEditNote}
                         onDelete={handleDeleteNote}
