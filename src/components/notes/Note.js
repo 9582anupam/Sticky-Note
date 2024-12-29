@@ -26,6 +26,8 @@ const Note = ({
     onEdit,
     onDelete,
     onDrag,
+    zIndex,
+    bringToFront,
 }) => {
     const title = initialTitle;
     const description = initialDescription;
@@ -54,12 +56,17 @@ const Note = ({
         putData({ ...note, width: data.size.width, height: data.size.height });
     };
 
+    const handleMouseDownOnNote = () => {
+        bringToFront(id);
+    };
+
     return (
         <Draggable
             defaultPosition={{ x: initialX, y: initialY }}
             onStop={handleDrag}
             handle=".content-handle"
             cancel=".content-cancel"
+            onMouseDown={handleMouseDownOnNote}
             // nodeRef={nodeRef}
         >
             <ResizableBox
@@ -77,11 +84,12 @@ const Note = ({
                     ) : (
                         <div className="resizable-handle"></div>
                     )
-                }>
+                }
+                style={{ zIndex }}>
                 <div
                     className={`note w-full ${
                         !isMinimized && "h-full"
-                    } rounded select-none transition-cursor content-handle ${
+                    } rounded select-none transition-cursor content-handle shadow-2xl ${
                         isGrabbing ? "cursor-grabbing" : "cursor-grab"
                     } ${isHighlighted ? "highlighted" : ""} ${
                         isMinimized && "h-fit"
@@ -125,6 +133,7 @@ const Note = ({
                             <p className="text-base md:text-xl lg:text-2xl font-bold m-2 text-center truncate flex-1">
                                 {title}
                             </p>
+                            <p>z{zIndex}</p>
 
                             <div className="">
                                 <Tooltip title="edit">

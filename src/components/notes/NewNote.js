@@ -35,6 +35,7 @@ const NewNote = ({
     initialContent = "",
     initialColor = "",
     initialId = "",
+    notesLength,
 }) => {
     const defaultColor = colors[0].hex; // Default color
     const [selectedColor, setSelectedColor] = useState(
@@ -45,6 +46,11 @@ const NewNote = ({
 
     const theme = useTheme();
     const isDarkMode = theme.palette.mode === "dark";
+
+    // if initial id exist it suggest that we are updating the note rather than creating a new one
+    // so if ware updating a note then we have to keep the zIndex same
+    // for updating note zIndex will be the notesLength+1
+    const zIndex = initialId ? notesLength : notesLength + 1;
 
     useEffect(() => {
         setSelectedColor(initialColor || defaultColor);
@@ -62,6 +68,7 @@ const NewNote = ({
             title,
             content,
             color: selectedColor || defaultColor, // Default color if none is selected
+            zIndex,
         });
 
         setTitle("");
