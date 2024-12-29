@@ -33,7 +33,7 @@ img {
 }
 
 .resizable-handle {
-    background-image: url("./resize.svg");
+    background-image: url("../../utils/icons/resize.svg");
     height: 20px;
     width: 20px;
     object-fit: contain !important;
