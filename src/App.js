@@ -9,6 +9,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Navigate } from "react-router-dom";
+import Loader from "./components/animations/Loader";
 
 // Create a dark theme
 const darkTheme = createTheme({
@@ -19,17 +20,26 @@ const darkTheme = createTheme({
 
 function App() {
     const [user, setUser] = useState(null);
+    const [loading, setLoading] = useState(true); // State to track loading
     const auth = getAuth();
 
     useEffect(() => {
         // Listen for authentication state changes
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setUser(user);
-            // setUser(1); // so that user can try app even without signing up
+            setLoading(false); // Once the auth state is determined, stop loading
         });
 
         return () => unsubscribe(); // Clean up the listener on unmount
     }, [auth]);
+
+    if (loading) {
+        return (
+            <div className="flex justify-center items-center h-svh bg-black">
+                <Loader />;
+            </div>
+        );
+    }
 
     return (
         <Router>
@@ -37,32 +47,33 @@ function App() {
                 <div className="App text-center text-3xl h-svh">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/signin" element={user ? <Navigate to="/dashboard" /> : <Signin />} />
-                        <Route path="/signup" element={user ? <Navigate to="/dashboard" /> : <Signup />} />
+                        <Route
+                            path="/signin"
+                            element={
+                                user ? <Navigate to="/dashboard" /> : <Signin />
+                            }
+                        />
+                        <Route
+                            path="/signup"
+                            element={
+                                user ? <Navigate to="/dashboard" /> : <Signup />
+                            }
+                        />
                         <Route
                             path="/dashboard"
-                            element={user ? (
-                                <>
-                                    <Navbar />
-                                    <Dashboard />
-                                </>
-                            ) : (
-                                <Navigate to="/signin" />
-                            )}
+                            element={
+                                user ? (
+                                    <>
+                                        <Navbar />
+                                        <Dashboard />
+                                    </>
+                                ) : (
+                                    <Navigate to="/signin" />
+                                )
+                            }
                         />
-                        Redirect from any undefined route to home
+                        {/* Redirect from any undefined route to home */}
                         <Route path="*" element={<Navigate to="/" />} />
-
-                        {/* <Route path="/" element={<Home />} />       
-                        <Route path="/dashboard" element={
-                            (<>
-                                <Navbar />
-                                <Dashboard />
-                            </>)
-                        } />                        
-                        <Route path="/signin" element={<Signin />} />                        
-                        <Route path="/signup" element={<Signup />} />                         */}
-
                     </Routes>
                 </div>
             </ThemeProvider>
