@@ -5,7 +5,6 @@ const BASE_LOC = "users/user/";
 
 export const putData = async (data) => {
     const user = auth.currentUser;
-    console.log(data);
     if (user) {
         await set(ref(db, `${BASE_LOC}/${user.uid}/note/${data.id}`), data);
     } else {

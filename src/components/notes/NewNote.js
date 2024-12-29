@@ -36,6 +36,9 @@ const NewNote = ({
     initialColor = "",
     initialId = "",
     notesLength,
+    height,
+    width,
+    minimize,
 }) => {
     const defaultColor = colors[0].hex; // Default color
     const [selectedColor, setSelectedColor] = useState(
@@ -69,6 +72,9 @@ const NewNote = ({
             content,
             color: selectedColor || defaultColor, // Default color if none is selected
             zIndex,
+            height,
+            width,
+            minimize,
         });
 
         setTitle("");

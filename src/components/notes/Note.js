@@ -28,6 +28,8 @@ const Note = ({
     onDrag,
     zIndex,
     bringToFront,
+    notes,
+    setNotes,
 }) => {
     const title = initialTitle;
     const description = initialDescription;
@@ -38,6 +40,12 @@ const Note = ({
     const handleMinimize = () => {
         setIsMinimized(!isMinimized);
         putData({ ...note, minimize: !isMinimized });
+        // updates the note in notes array
+        setNotes(
+            notes.map((n) =>
+                n.id === id ? { ...n, minimize: !isMinimized } : n
+            )
+        );
     };
 
     const handleMouseDown = () => {
@@ -54,6 +62,12 @@ const Note = ({
 
     const handleResizeStop = (e, data) => {
         putData({ ...note, width: data.size.width, height: data.size.height });
+        // updates the note in notes array
+        setNotes(
+            notes.map((n) =>
+                n.id === id? {...n, width: data.size.width, height: data.size.height } : n
+            )
+        );
     };
 
     const handleMouseDownOnNote = () => {

@@ -224,6 +224,8 @@ const Dashboard = () => {
                             onDrag={handleDragNote}
                             zIndex={note.zIndex}
                             bringToFront={bringToFront}
+                            notes={notes}
+                            setNotes={setNotes}
                         />
                     ))}
                 </div>
@@ -250,6 +252,9 @@ const Dashboard = () => {
                             initialColor={editingNote ? editingNote.color : ""}
                             initialId={editingNote ? editingNote.id : ""} // Pass initial ID
                             notesLength={notes.length}
+                            height={editingNote ? editingNote.height : 320}
+                            width={editingNote ? editingNote.width : 320}
+                            minimize={editingNote? editingNote.minimize : false}
                         />
                     )}
                 </div>
