@@ -147,7 +147,6 @@ const Note = ({
                             <p className="text-base md:text-xl lg:text-2xl font-bold m-2 text-center truncate flex-1">
                                 {title}
                             </p>
-                            <p>z{zIndex}</p>
 
                             <div className="">
                                 <Tooltip title="edit">
